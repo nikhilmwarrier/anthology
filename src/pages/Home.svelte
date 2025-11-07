@@ -1,0 +1,75 @@
+<script>
+  import {
+    Page,
+    Link,
+    Toolbar,
+    Block,
+    BlockTitle,
+    List,
+    ListItem,
+    Tabs,
+  } from "framework7-svelte";
+  import BookCard from "../components/BookCard.svelte";
+  import Nav from "../components/Nav.svelte";
+  import { store } from "../js/store.svelte";
+</script>
+
+<Page name="home">
+  <Nav />
+
+  <Toolbar tabbar bottom icons>
+    <Link
+      tabLink="#tab-1"
+      tabLinkActive
+      text="Library"
+      iconIos="f7:book"
+      iconMd="material:library_books"
+    />
+    <Link tabLink="#tab-2" text="Mail" iconIos="f7:" iconMd="material:email" />
+  </Toolbar>
+
+  <Tabs swipeable>
+    <swiper-slide id="tab-1" class="tab tab-active page-content">
+      <BlockTitle>Library</BlockTitle>
+
+      <Block>
+        <div class="grid grid-cols-2 grid-gap">
+          <BookCard />
+          <BookCard />
+          <BookCard />
+          <BookCard />
+          <BookCard />
+          <BookCard />
+          <BookCard />
+          <BookCard />
+          <BookCard />
+          <BookCard />
+          <BookCard />
+          <BookCard />
+        </div>
+      </Block>
+    </swiper-slide>
+    <swiper-slide id="tab-2" class="tab page-content">
+      <List strong inset dividersIos>
+        <ListItem
+          title="Dynamic (Component) Route"
+          link="/dynamic-route/blog/45/post/125/?foo=bar#about"
+        />
+        <ListItem
+          title="Default Route (404)"
+          link="/load-something-that-doesnt-exist/"
+        />
+        <ListItem
+          title="Request Data & Load"
+          link="/request-and-load/user/123456/"
+        />
+      </List>
+    </swiper-slide>
+  </Tabs>
+</Page>
+
+<style>
+  .page-content {
+    padding: 0;
+  }
+</style>
