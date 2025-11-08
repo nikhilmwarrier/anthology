@@ -1,5 +1,11 @@
 // Adapted from https://github.com/readest/readest
 
+import type { FileInfo } from "@capacitor/filesystem";
+
+export interface BookFile extends FileInfo {
+  coverSrc: string;
+}
+
 export interface BookDoc {
   metadata: BookMetadata;
   rendition?: {
