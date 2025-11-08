@@ -1,3 +1,5 @@
+import type { BookDoc } from "../types/view";
+
 export type ReaderSettings = {
   invertImages: boolean;
   justify: boolean;
@@ -5,6 +7,10 @@ export type ReaderSettings = {
   spacing: number;
   fontSize: number;
 };
+
+export interface Book extends BookDoc {
+  cover: string;
+}
 
 class GlobalState {
   currentBookPath = $state("/book.epub");
