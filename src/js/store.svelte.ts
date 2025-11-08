@@ -7,8 +7,7 @@ export type ReaderSettings = {
 };
 
 class GlobalState {
-  #darkMode = $state<boolean>(true);
-  #blackMode = $derived<boolean>(this.#darkMode);
+  currentBookPath = $state("/book.epub");
 
   settings = $state<ReaderSettings>({
     invertImages: true,
@@ -20,3 +19,7 @@ class GlobalState {
 }
 
 export let store = new GlobalState();
+
+$effect.root(() => {
+  $inspect("Current: ", store.currentBookPath);
+});

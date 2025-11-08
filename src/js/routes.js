@@ -9,11 +9,11 @@ const routes = [
     component: Home,
   },
   {
-    path: "/read/:book/",
+    path: "/reader/",
     component: ReaderPage,
   },
   {
-    path: "/read/:book/settings",
+    path: "/reader/settings",
     popup: {
       component: SettingsPanel,
     },

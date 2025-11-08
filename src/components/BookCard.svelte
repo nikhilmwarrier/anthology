@@ -3,7 +3,7 @@
 </script>
 
 <div class="book-card">
-  <Link href="/read/test/">
+  <Link href="/reader/">
     <div>
       <img src="/cover.jpg" alt="Cover" />
     </div>

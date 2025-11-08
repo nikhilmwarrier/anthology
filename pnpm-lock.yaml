@@ -23,9 +23,15 @@ importers:
       '@capacitor/device':
         specifier: ^7.0.2
         version: 7.0.2(@capacitor/core@7.4.4)
+      '@capacitor/filesystem':
+        specifier: ^7.1.4
+        version: 7.1.4(@capacitor/core@7.4.4)
       '@capacitor/status-bar':
         specifier: ^7.0.3
         version: 7.0.3(@capacitor/core@7.4.4)
+      '@capawesome/capacitor-file-picker':
+        specifier: ^7.2.0
+        version: 7.2.0(@capacitor/core@7.4.4)
       foliate-js:
         specifier: ^1.0.1
         version: 1.0.1
@@ -89,8 +95,21 @@ packages:
     peerDependencies:
       '@capacitor/core': '>=7.0.0'
 
+  '@capacitor/filesystem@7.1.4':
+    resolution: {integrity: sha512-BdUnOVulHAtruW2GeC9o7e9LO5aFcVYqNn3dLypJSOck/WipUFNfI0QWoUS0FVGeqBbDJgFGi3zjXJx0lzbDkA==}
+    peerDependencies:
+      '@capacitor/core': '>=7.0.0'
+
   '@capacitor/status-bar@7.0.3':
     resolution: {integrity: sha512-JyRpVnKwHij9hgPWolF6PK+HT3e2HSPjN11/h2OmKxq8GAdPGARFLv+97eZl0pvuvm0Kka/LpiLb5whXISBg7Q==}
+    peerDependencies:
+      '@capacitor/core': '>=7.0.0'
+
+  '@capacitor/synapse@1.0.4':
+    resolution: {integrity: sha512-/C1FUo8/OkKuAT4nCIu/34ny9siNHr9qtFezu4kxm6GY1wNFxrCFWjfYx5C1tUhVGz3fxBABegupkpjXvjCHrw==}
+
+  '@capawesome/capacitor-file-picker@7.2.0':
+    resolution: {integrity: sha512-qUNa+Ypem575xSNiJwgiOaaHXzAHaxMtERySRIsIC0HggoCa11xGS3xEVtMooQ3fS0cDXfl4/17DYoHQtkDjXA==}
     peerDependencies:
       '@capacitor/core': '>=7.0.0'
 
@@ -1047,7 +1066,18 @@ snapshots:
     dependencies:
       '@capacitor/core': 7.4.4
 
+  '@capacitor/filesystem@7.1.4(@capacitor/core@7.4.4)':
+    dependencies:
+      '@capacitor/core': 7.4.4
+      '@capacitor/synapse': 1.0.4
+
   '@capacitor/status-bar@7.0.3(@capacitor/core@7.4.4)':
+    dependencies:
+      '@capacitor/core': 7.4.4
+
+  '@capacitor/synapse@1.0.4': {}
+
+  '@capawesome/capacitor-file-picker@7.2.0(@capacitor/core@7.4.4)':
     dependencies:
       '@capacitor/core': 7.4.4
 

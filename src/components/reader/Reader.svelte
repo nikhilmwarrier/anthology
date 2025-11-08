@@ -8,7 +8,7 @@
   const getCSS = (settings: ReaderSettings) => `
     @namespace epub "http://www.idpf.org/2007/ops";
     html {
-        color-scheme: light dark;
+        color-scheme: dark light;
         background: black;
         font-size: ${settings.fontSize}px;
     }
@@ -28,7 +28,6 @@
     }
 
     p, li, blockquote, dd {
-        color: #eee;
         line-height: ${settings.spacing / 10} !important;
         text-align: ${settings.justify ? "justify" : "start"} !important;
         -webkit-hyphens: ${settings.hyphenate ? "auto" : "manual"};
@@ -59,7 +58,6 @@
   let styles = $derived(getCSS(store.settings));
 
   let view = $state<FoliateView>();
-  let renderer = $state<FoliateView["renderer"]>();
 
   let currentChapter = $state("");
   let currentPageLabel = $state("");
@@ -68,8 +66,13 @@
   onMount(async () => {
     // @ts-ignore
     await import("foliate-js/view.js");
-    loadBook("/book.epub");
-    await StatusBar.hide();
+    try {
+      await loadBook(store.currentBookPath);
+      // alert(store.currentBookPath);
+      await StatusBar.hide();
+    } catch (e) {
+      console.error(e);
+    }
   });
 
   onDestroy(async () => {

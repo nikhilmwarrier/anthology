@@ -10,8 +10,8 @@
   function turnPage(n: number) {
     if (!view) return;
     try {
-      if (n === -1) view.goLeft();
-      else view.goRight();
+      if (n === -1) view?.goLeft?.();
+      else view?.goRight?.();
     } catch (e) {
       console.error(e);
     }
