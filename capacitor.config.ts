@@ -1,8 +1,8 @@
 import type { CapacitorConfig } from "@capacitor/cli";
 
 const config: CapacitorConfig = {
-  appId: "systems.nik.f7demo",
-  appName: "Framework7 Demo",
+  appId: "systems.nik.ember",
+  appName: "Ember",
   webDir: "dist",
   server: {
     cleartext: true,

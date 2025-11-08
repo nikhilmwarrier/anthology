@@ -1,7 +1,7 @@
 {
   "type": ["capacitor"],
-  "name": "My App",
-  "pkg": "io.framework7.myapp",
+  "name": "Ember",
+  "pkg": "systems.nik.ember",
   "framework": "svelte",
   "template": "single-view",
   "cssPreProcessor": false,
