@@ -37,7 +37,7 @@
 </div>
 
 <style>
-  #overlay {
+  :global(#overlay) {
     --_gap: 7%;
     --_margin: 48px;
     --_max-inline-size: 720px;
