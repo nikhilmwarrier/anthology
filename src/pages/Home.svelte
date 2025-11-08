@@ -11,7 +11,6 @@
   } from "framework7-svelte";
   import BookCard from "../components/BookCard.svelte";
   import Nav from "../components/Nav.svelte";
-  import { store } from "../js/store.svelte";
 </script>
 
 <Page name="home">
@@ -34,17 +33,6 @@
 
       <Block>
         <div class="grid grid-cols-2 grid-gap">
-          <BookCard />
-          <BookCard />
-          <BookCard />
-          <BookCard />
-          <BookCard />
-          <BookCard />
-          <BookCard />
-          <BookCard />
-          <BookCard />
-          <BookCard />
-          <BookCard />
           <BookCard />
         </div>
       </Block>

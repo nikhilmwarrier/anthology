@@ -2,6 +2,13 @@
   box-sizing: border-box;
 }
 
+html,
+body {
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+}
+
 img {
   max-width: 100%;
   max-height: 100%;

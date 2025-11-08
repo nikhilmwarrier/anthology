@@ -4,7 +4,7 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite --host",
+    "dev": "vite --host --port 3000",
     "build": "vite build",
     "preview": "vite preview",
     "check": "svelte-check --tsconfig ./tsconfig.app.json && tsc -p tsconfig.node.json"
@@ -20,8 +20,12 @@
   },
   "dependencies": {
     "@capacitor/android": "^7.4.4",
+    "@capacitor/app": "^7.1.0",
     "@capacitor/cli": "^7.4.4",
     "@capacitor/core": "^7.4.4",
+    "@capacitor/device": "^7.0.2",
+    "@capacitor/status-bar": "^7.0.3",
+    "foliate-js": "^1.0.1",
     "framework7": "^8.3.4",
     "framework7-icons": "^5.0.5",
     "framework7-svelte": "^8.3.4",

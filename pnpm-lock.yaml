@@ -11,12 +11,24 @@ importers:
       '@capacitor/android':
         specifier: ^7.4.4
         version: 7.4.4(@capacitor/core@7.4.4)
+      '@capacitor/app':
+        specifier: ^7.1.0
+        version: 7.1.0(@capacitor/core@7.4.4)
       '@capacitor/cli':
         specifier: ^7.4.4
         version: 7.4.4
       '@capacitor/core':
         specifier: ^7.4.4
         version: 7.4.4
+      '@capacitor/device':
+        specifier: ^7.0.2
+        version: 7.0.2(@capacitor/core@7.4.4)
+      '@capacitor/status-bar':
+        specifier: ^7.0.3
+        version: 7.0.3(@capacitor/core@7.4.4)
+      foliate-js:
+        specifier: ^1.0.1
+        version: 1.0.1
       framework7:
         specifier: ^8.3.4
         version: 8.3.4
@@ -59,6 +71,11 @@ packages:
     peerDependencies:
       '@capacitor/core': ^7.4.0
 
+  '@capacitor/app@7.1.0':
+    resolution: {integrity: sha512-W7m09IWrUjZbo7AKeq+rc/KyucxrJekTBg0l4QCm/yDtCejE3hebxp/W2esU26KKCzMc7H3ClkUw32E9lZkwRA==}
+    peerDependencies:
+      '@capacitor/core': '>=7.0.0'
+
   '@capacitor/cli@7.4.4':
     resolution: {integrity: sha512-J7ciBE7GlJ70sr2s8oz1+H4ZdNk4MGG41fsakUlDHWva5UWgFIZYMiEdDvGbYazAYTaxN3lVZpH9zil9FfZj+Q==}
     engines: {node: '>=20.0.0'}
@@ -66,6 +83,16 @@ packages:
 
   '@capacitor/core@7.4.4':
     resolution: {integrity: sha512-xzjxpr+d2zwTpCaN0k+C6wKSZzWFAb9OVEUtmO72ihjr/NEDoLvsGl4WLfjWPcCO2zOy0b2X52tfRWjECFUjtw==}
+
+  '@capacitor/device@7.0.2':
+    resolution: {integrity: sha512-OMGMBjLbh7ApaqW1oOJIV73iyrFK/T5v2MzuQYq3GLT+jnGvCuj/y82Ofq2Fz9/hlJ2fukztPwG1K80jyk0i6w==}
+    peerDependencies:
+      '@capacitor/core': '>=7.0.0'
+
+  '@capacitor/status-bar@7.0.3':
+    resolution: {integrity: sha512-JyRpVnKwHij9hgPWolF6PK+HT3e2HSPjN11/h2OmKxq8GAdPGARFLv+97eZl0pvuvm0Kka/LpiLb5whXISBg7Q==}
+    peerDependencies:
+      '@capacitor/core': '>=7.0.0'
 
   '@esbuild/aix-ppc64@0.25.12':
     resolution: {integrity: sha512-Hhmwd6CInZ3dwpuGTF8fJG6yoWmsToE+vYgD4nytZVxcu1ulHpUQRAB1UJ8+N1Am3Mz4+xOByoQoSZf4D+CpkA==}
@@ -506,6 +533,9 @@ packages:
     resolution: {integrity: sha512-Vw8qHK3bZM9y/P10u3Vib8o/DdkvA2OtPtZvD871QKjy74Wj1WSKFILMPRPSdUSx5RFK1arlJzEtA4PkFgnbuA==}
     engines: {node: '>=18'}
 
+  construct-style-sheets-polyfill@3.1.0:
+    resolution: {integrity: sha512-HBLKP0chz8BAY6rBdzda11c3wAZeCZ+kIG4weVC2NM3AXzxx09nhe8t0SQNdloAvg5GLuHwq/0SPOOSPvtCcKw==}
+
   cross-spawn@7.0.6:
     resolution: {integrity: sha512-uV2QOWP2nWzsy2aMp8aRibhi9dlzF5Hgh5SHaB9OiTGEyDTiJJyx0uy51QXdyWbtAHNua4XJzUKca3OzKUd3vA==}
     engines: {node: '>= 8'}
@@ -569,6 +599,9 @@ packages:
     peerDependenciesMeta:
       picomatch:
         optional: true
+
+  foliate-js@1.0.1:
+    resolution: {integrity: sha512-Cj4h2ub5aVA+yUgbhvVhCyxwi0GPF4pyNBa6Lw9+6WKY1ReBxipItn2kEBO6u7Vu/xYXjK711R74+t+yW/0u5w==}
 
   foreground-child@3.3.1:
     resolution: {integrity: sha512-gIXjKqtFuWEgzFRJA9WCQeSJLZDjgJUOMCMzxtvFq/37KojM1BFGufqsCy0r4qSQmYLsZYMeyRqzIWOMup03sw==}
@@ -980,6 +1013,10 @@ snapshots:
     dependencies:
       '@capacitor/core': 7.4.4
 
+  '@capacitor/app@7.1.0(@capacitor/core@7.4.4)':
+    dependencies:
+      '@capacitor/core': 7.4.4
+
   '@capacitor/cli@7.4.4':
     dependencies:
       '@ionic/cli-framework-output': 2.2.8
@@ -1005,6 +1042,14 @@ snapshots:
   '@capacitor/core@7.4.4':
     dependencies:
       tslib: 2.8.1
+
+  '@capacitor/device@7.0.2(@capacitor/core@7.4.4)':
+    dependencies:
+      '@capacitor/core': 7.4.4
+
+  '@capacitor/status-bar@7.0.3(@capacitor/core@7.4.4)':
+    dependencies:
+      '@capacitor/core': 7.4.4
 
   '@esbuild/aix-ppc64@0.25.12':
     optional: true
@@ -1347,6 +1392,8 @@ snapshots:
 
   commander@12.1.0: {}
 
+  construct-style-sheets-polyfill@3.1.0: {}
+
   cross-spawn@7.0.6:
     dependencies:
       path-key: 3.1.1
@@ -1419,6 +1466,10 @@ snapshots:
   fdir@6.5.0(picomatch@4.0.3):
     optionalDependencies:
       picomatch: 4.0.3
+
+  foliate-js@1.0.1:
+    dependencies:
+      construct-style-sheets-polyfill: 3.1.0
 
   foreground-child@3.3.1:
     dependencies:
