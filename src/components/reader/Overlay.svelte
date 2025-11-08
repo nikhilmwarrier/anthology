@@ -3,6 +3,7 @@
   import type { FoliateView } from "../../types/view";
   import Settings from "../settings/Settings.svelte";
   import TimeIndicator from "./TimeIndicator.svelte";
+  import { onMount } from "svelte";
 
   let { foliateView: view }: { foliateView: FoliateView } = $props();
 
@@ -15,6 +16,15 @@
       console.error(e);
     }
   }
+
+  let bottomBarActive = $state(true);
+  let bottomBarOpacity = $derived(bottomBarActive ? 1 : 0.5);
+
+  onMount(() => {
+    setTimeout(() => {
+      bottomBarActive = false;
+    }, 1000);
+  });
 </script>
 
 <div id="overlay">
@@ -25,7 +35,7 @@
   <button class="btn-next-page" onclick={() => turnPage(+1)}>
     Next Page
   </button>
-  <div class="bottom">
+  <div class="bottom" style:--opacity={bottomBarOpacity}>
     <Button back iconMd="material:arrow_back" iconIos="f7:back"></Button>
     <div class="bottom-right">
       <TimeIndicator />
@@ -108,12 +118,17 @@
   }
 
   .bottom {
+    --opacity: 1;
     pointer-events: all;
     grid-area: bottom;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    opacity: 0.5;
+    opacity: var(--opacity);
+    transition: all 0.2s ease-out;
+    &:hover {
+      opacity: 1;
+    }
     /* background: green; */
   }
 
@@ -121,5 +136,6 @@
     display: flex;
     align-items: center;
     justify-content: flex-end;
+    gap: 1rem;
   }
 </style>
