@@ -36,12 +36,21 @@
     Next Page
   </button>
   <div class="bottom" style:--opacity={bottomBarOpacity}>
-    <Button back iconMd="material:arrow_back" iconIos="f7:back"></Button>
+    <Button back iconMd="material:arrow_back" iconIos="f7:back" tooltip="Back"
+    ></Button>
+    <div class="bottom-mid">
+      <Button iconMd="material:first_page" />
+      <Button iconMd="material:toc" tooltip="Table of Contents" />
+      <Button iconMd="material:last_page" />
+    </div>
     <div class="bottom-right">
       <TimeIndicator />
-
-      <Link iconMd="material:more_vert" iconIos="f7:gear" href="settings" />
-      <!-- sheetOpen=".demo-sheet" -->
+      <Link
+        iconMd="material:more_vert"
+        iconIos="f7:gear"
+        href="settings"
+        tooltip="Settings"
+      />
     </div>
   </div>
 </div>
@@ -132,10 +141,11 @@
     /* background: green; */
   }
 
-  .bottom-right {
+  .bottom-right,
+  .bottom-mid {
     display: flex;
     align-items: center;
-    justify-content: flex-end;
+    justify-content: center;
     gap: 1rem;
   }
 </style>

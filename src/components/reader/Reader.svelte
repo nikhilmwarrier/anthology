@@ -11,6 +11,7 @@
         color-scheme: dark light;
         background: black;
         font-size: ${settings.fontSize}px;
+        font-family: serif;
     }
     /* https://github.com/whatwg/html/issues/5426 */
     @media (prefers-color-scheme: dark) {
