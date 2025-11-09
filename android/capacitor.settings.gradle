@@ -11,8 +11,14 @@ project(':capacitor-device').projectDir = new File('../node_modules/.pnpm/@capac
 include ':capacitor-filesystem'
 project(':capacitor-filesystem').projectDir = new File('../node_modules/.pnpm/@capacitor+filesystem@7.1.4_@capacitor+core@7.4.4/node_modules/@capacitor/filesystem/android')
 
+include ':capacitor-preferences'
+project(':capacitor-preferences').projectDir = new File('../node_modules/.pnpm/@capacitor+preferences@7.0.2_@capacitor+core@7.4.4/node_modules/@capacitor/preferences/android')
+
 include ':capacitor-status-bar'
 project(':capacitor-status-bar').projectDir = new File('../node_modules/.pnpm/@capacitor+status-bar@7.0.3_@capacitor+core@7.4.4/node_modules/@capacitor/status-bar/android')
 
 include ':capawesome-capacitor-file-picker'
 project(':capawesome-capacitor-file-picker').projectDir = new File('../node_modules/.pnpm/@capawesome+capacitor-file-picker@7.2.0_@capacitor+core@7.4.4/node_modules/@capawesome/capacitor-file-picker/android')
+
+include ':nikhilmwarrier-capacitor-directory-picker'
+project(':nikhilmwarrier-capacitor-directory-picker').projectDir = new File('../../capacitor-directory-picker/android')

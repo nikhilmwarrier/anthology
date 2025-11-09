@@ -1,6 +1,10 @@
 // Adapted from https://github.com/readest/readest
 
-import type { FileInfo } from "@capacitor/filesystem";
+import type { FileInfo } from "@nikhilmwarrier/capacitor-directory-picker";
+
+export interface BookDirectory {
+  uri: string;
+}
 
 export interface BookFile extends FileInfo {
   coverSrc: string;
@@ -77,6 +81,26 @@ export type CFIString = string;
 
 export type EventCallback = (e: any) => void;
 
+export type BookLocationDetail = {
+  cfi: CFIString;
+  fraction: number;
+  location: {
+    current: number;
+    next: number;
+    total: number;
+  };
+  pageItem: PageItem | null;
+  range: Range;
+  section: {
+    current: number;
+    total: number;
+  } | null;
+  time: {
+    section: number;
+    total: number;
+  };
+  tocItem: TOCItem | null;
+};
 export interface FoliateView extends HTMLElement {
   addEventListener: (event: string, callback: EventCallback) => void;
   removeEventListener: (event: string, callback: EventCallback) => void;

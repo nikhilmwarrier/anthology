@@ -12,8 +12,10 @@ dependencies {
     implementation project(':capacitor-app')
     implementation project(':capacitor-device')
     implementation project(':capacitor-filesystem')
+    implementation project(':capacitor-preferences')
     implementation project(':capacitor-status-bar')
     implementation project(':capawesome-capacitor-file-picker')
+    implementation project(':nikhilmwarrier-capacitor-directory-picker')
 
 }
 

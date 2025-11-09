@@ -1,4 +1,4 @@
-import type { BookDoc } from "../types/view";
+import type { BookDoc, BookFile, BookLocationDetail } from "../types/types";
 
 export type ReaderSettings = {
   invertImages: boolean;
@@ -12,8 +12,15 @@ export interface Book extends BookDoc {
   cover: string;
 }
 
+export type BookState = {
+  settings: ReaderSettings;
+  location: BookLocationDetail["location"];
+};
+
 class GlobalState {
   currentBookPath = $state("/book.epub");
+  bookStates = $state(new Map<string, BookState>());
+  bookFiles = $state<BookFile[]>([]);
 
   settings = $state<ReaderSettings>({
     invertImages: true,

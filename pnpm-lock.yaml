@@ -26,12 +26,18 @@ importers:
       '@capacitor/filesystem':
         specifier: ^7.1.4
         version: 7.1.4(@capacitor/core@7.4.4)
+      '@capacitor/preferences':
+        specifier: ^7.0.2
+        version: 7.0.2(@capacitor/core@7.4.4)
       '@capacitor/status-bar':
         specifier: ^7.0.3
         version: 7.0.3(@capacitor/core@7.4.4)
       '@capawesome/capacitor-file-picker':
         specifier: ^7.2.0
         version: 7.2.0(@capacitor/core@7.4.4)
+      '@nikhilmwarrier/capacitor-directory-picker':
+        specifier: link:../capacitor-directory-picker
+        version: link:../capacitor-directory-picker
       foliate-js:
         specifier: ^1.0.1
         version: 1.0.1
@@ -97,6 +103,11 @@ packages:
 
   '@capacitor/filesystem@7.1.4':
     resolution: {integrity: sha512-BdUnOVulHAtruW2GeC9o7e9LO5aFcVYqNn3dLypJSOck/WipUFNfI0QWoUS0FVGeqBbDJgFGi3zjXJx0lzbDkA==}
+    peerDependencies:
+      '@capacitor/core': '>=7.0.0'
+
+  '@capacitor/preferences@7.0.2':
+    resolution: {integrity: sha512-JVCy0/oc6RsRencLOZ8rMqjNxAlHs7awPJU/MXqangsJ48oO2PnYGHfCvci6WgIJlqyC0QhvWZaO1BR1lVkHWQ==}
     peerDependencies:
       '@capacitor/core': '>=7.0.0'
 
@@ -1070,6 +1081,10 @@ snapshots:
     dependencies:
       '@capacitor/core': 7.4.4
       '@capacitor/synapse': 1.0.4
+
+  '@capacitor/preferences@7.0.2(@capacitor/core@7.4.4)':
+    dependencies:
+      '@capacitor/core': 7.4.4
 
   '@capacitor/status-bar@7.0.3(@capacitor/core@7.4.4)':
     dependencies:
