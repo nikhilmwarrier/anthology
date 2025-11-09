@@ -1,13 +1,13 @@
 {
   "type": ["capacitor"],
-  "name": "Ember",
-  "pkg": "systems.nik.ember",
+  "name": "Anthology",
+  "pkg": "systems.nik.anthology",
   "framework": "svelte",
   "template": "single-view",
   "cssPreProcessor": false,
   "bundler": "vite",
   "capacitor": {
-    "platforms": ["ios", "android"]
+    "platforms": ["android"]
   },
   "theming": {
     "customColor": false,

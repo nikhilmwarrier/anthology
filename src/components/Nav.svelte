@@ -2,7 +2,7 @@
   import { Link, Navbar, NavRight, Searchbar } from "framework7-svelte";
 </script>
 
-<Navbar title="Ember">
+<Navbar title="Anthology">
   <div class="navbar-inner">
     <NavRight>
       <Link

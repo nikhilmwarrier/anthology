@@ -15,7 +15,7 @@
 
   // Framework7 Parameters
   let f7params: Framework7Parameters = {
-    name: "Ember", // App name
+    name: "Anthology", // App name
     theme: "auto", // Automatic theme detection
     routes,
   };

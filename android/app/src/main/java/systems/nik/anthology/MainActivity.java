@@ -1,4 +1,4 @@
-package systems.nik.f7demo;
+package systems.nik.anthology;
 
 import com.getcapacitor.BridgeActivity;
 

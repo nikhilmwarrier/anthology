@@ -1,10 +1,10 @@
 apply plugin: 'com.android.application'
 
 android {
-    namespace "systems.nik.f7demo"
+    namespace "systems.nik.anthology"
     compileSdk rootProject.ext.compileSdkVersion
     defaultConfig {
-        applicationId "systems.nik.f7demo"
+        applicationId "systems.nik.anthology"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1

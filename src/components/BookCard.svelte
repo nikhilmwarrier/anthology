@@ -1,6 +1,7 @@
 <script lang="ts">
   let { bookFile }: { bookFile: BookFile } = $props();
-  import { Button, f7, Link } from "framework7-svelte";
+  import { f7 } from "framework7-svelte";
+  // @ts-ignore
   import type { BookFile } from "../types/view";
   import { store } from "../js/store.svelte";
   import { Capacitor } from "@capacitor/core";

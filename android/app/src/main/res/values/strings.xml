@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='utf-8'?>
 <resources>
-    <string name="app_name">Ember</string>
-    <string name="title_activity_main">Ember</string>
-    <string name="package_name">systems.nik.ember</string>
-    <string name="custom_url_scheme">systems.nik.ember</string>
+    <string name="app_name">Anthology</string>
+    <string name="title_activity_main">Anthology</string>
+    <string name="package_name">systems.nik.anthology</string>
+    <string name="custom_url_scheme">systems.nik.anthology</string>
 </resources>
