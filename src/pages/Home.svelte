@@ -18,10 +18,17 @@
   import fetchBookFiles from "../js/helpers/fetchBookFiles";
   import { store } from "../js/store.svelte";
   import importEbooks from "../js/helpers/importEbooks";
+  import { resetBooksDirectory } from "../js/helpers/booksDirectory";
 
   onMount(async () => {
     await fetchBookFiles();
   });
+
+  async function handleChangeBooksDirectory(e: Event) {
+    e.preventDefault();
+    await resetBooksDirectory();
+    await fetchBookFiles();
+  }
 </script>
 
 <Page name="home">
@@ -35,7 +42,12 @@
       iconIos="f7:book"
       iconMd="material:library_books"
     />
-    <Link tabLink="#tab-2" text="Mail" iconIos="f7:" iconMd="material:email" />
+    <Link
+      tabLink="#tab-2"
+      text="Settings"
+      iconIos="f7:"
+      iconMd="material:settings"
+    />
   </Toolbar>
 
   <Fab position="right-bottom" on:click={importEbooks} title="Add ebooks">
@@ -57,17 +69,10 @@
     <swiper-slide id="tab-2" class="tab page-content">
       <List strong inset dividersIos>
         <ListItem
-          title="Dynamic (Component) Route"
-          link="/dynamic-route/blog/45/post/125/?foo=bar#about"
-        />
-        <ListItem
-          title="Default Route (404)"
-          link="/load-something-that-doesnt-exist/"
-        />
-        <ListItem
-          title="Request Data & Load"
-          link="/request-and-load/user/123456/"
-        />
+          link="#"
+          title="Change books directory"
+          on:click={handleChangeBooksDirectory}
+        ></ListItem>
       </List>
     </swiper-slide>
   </Tabs>

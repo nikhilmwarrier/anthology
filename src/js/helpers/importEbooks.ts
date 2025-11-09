@@ -1,7 +1,8 @@
-import { Directory, Filesystem } from "@capacitor/filesystem";
 import { FilePicker } from "@capawesome/capacitor-file-picker";
 import { SUPPORTED_FILETYPES } from "../constants";
-import getBooksDirectory from "./getBooksDirectory";
+import { getBooksDirectory } from "./booksDirectory";
+import { DirectoryPicker } from "@nikhilmwarrier/capacitor-directory-picker";
+import fetchBookFiles from "./fetchBookFiles";
 
 async function pickEbookFiles() {
   const result = await FilePicker.pickFiles({
@@ -18,16 +19,22 @@ async function pickEbookFiles() {
 export default async function importEbooks() {
   try {
     const files = await pickEbookFiles();
-    const dir = getBooksDirectory();
+    const dir = await getBooksDirectory();
+
+    console.log("Selected files: ", files);
+    console.log("Target dir: ", dir);
 
     for (const file of files) {
-      console.log(file.path);
       if (!file.path) continue;
-      Filesystem.copy({
+      await DirectoryPicker.copy({
         from: file.path,
-        to: `${dir}/${file.name}`,
+        to: dir.uri,
       });
+      console.log(`Book "${file.name}" copied.`);
     }
+
+    // Update ebooks list after copying
+    await fetchBookFiles();
   } catch (e) {
     console.error(e);
   }
