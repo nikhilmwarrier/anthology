@@ -1,11 +1,4 @@
-import { SvelteMap, SvelteSet } from "svelte/reactivity";
-import {
-  type BookDoc,
-  type BookFile,
-  type BookLocationDetail,
-  type CFIString,
-} from "../types/types";
-import DefaultMap from "./lib/DefaultMap";
+import { type BookDoc, type BookFile, type CFIString } from "../types/types";
 import { loadBooksState, saveBooksState } from "./helpers/booksState";
 
 export type ReaderSettings = {
@@ -23,7 +16,7 @@ export interface Book extends BookDoc {
 export type BookState = {
   settings: ReaderSettings;
   lastOpened: EpochTimeStamp;
-  lastLocation: CFIString | null;
+  lastLocation: CFIString;
 };
 
 export type BooksStateObject = { [bookPath: string]: BookState };
@@ -39,17 +32,23 @@ const defaultReaderSettings: ReaderSettings = {
 export const defaultBookState: BookState = {
   settings: defaultReaderSettings,
   lastOpened: 0,
-  lastLocation: null,
+  lastLocation: "",
 };
 
 class GlobalState {
   currentBookPath = $state("/book.epub");
+
   bookStates = $state<BooksStateObject>({});
   bookFiles = $state<BookFile[]>([]);
   currentBookDoc = $state<BookDoc>();
-  currentBookPos = $derived(
-    this.bookStates[this.currentBookPath]?.lastLocation || ""
-  );
+
+  // Creates object in bookStates if not exists
+  currentBookState = $derived.by(() => {
+    if (!this.bookStates[this.currentBookPath])
+      this.bookStates[this.currentBookPath] = defaultBookState;
+    return this.bookStates[this.currentBookPath];
+  });
+  currentBookPos = $derived(this.currentBookState.lastLocation || "");
 
   constructor() {
     loadBooksState().then(state => {
@@ -58,15 +57,7 @@ class GlobalState {
     });
   }
 
-  settings = $derived(this.bookStates[this.currentBookPath]?.settings);
-
-  // settings = $state<ReaderSettings>({
-  //   invertImages: true,
-  //   justify: true,
-  //   hyphenate: true,
-  //   spacing: 14,
-  //   fontSize: 16,
-  // });
+  settings = $derived(this.currentBookState.settings);
 }
 
 export let store = new GlobalState();

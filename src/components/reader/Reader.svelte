@@ -99,19 +99,11 @@
 
       store.currentBookDoc = await getBookDoc(bookPath);
 
-      let bookState = defaultBookState;
-
-      if (!store.bookStates[bookPath]) {
-        store.bookStates[bookPath] = bookState;
-      } else {
-        bookState = store.bookStates[bookPath];
-      }
-
       // view.renderer.setAttribute("margin", "0px"); // Remove unnecessary margins
       view.renderer.setAttribute("gap", "2ch");
       view.renderer.setStyles?.(styles);
 
-      view.init({ lastLocation: bookState.lastLocation || "" });
+      view.init({ lastLocation: store.currentBookState.lastLocation });
     } catch (e) {
       console.error("Failed to load book:", e);
     }
@@ -129,7 +121,7 @@
       }) => {
         const { tocItem, pageItem, fraction } = e.detail;
 
-        store.bookStates[store.currentBookPath].lastLocation = e.detail.cfi;
+        store.currentBookState.lastLocation = e.detail.cfi || "";
 
         currentChapter = tocItem?.label || "";
         currentPageLabel = pageItem?.label || ""; // From EPUB page-list
