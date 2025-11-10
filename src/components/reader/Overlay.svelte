@@ -1,9 +1,10 @@
 <script lang="ts">
-  import { Button, Link, PageContent, Sheet } from "framework7-svelte";
-  import type { FoliateView } from "../../types/view";
-  import Settings from "../settings/Settings.svelte";
+  import { Button, f7, Link } from "framework7-svelte";
+  import type { FoliateView } from "../../types/types";
+  import TableOfContents from "./TableOfContents.svelte";
   import TimeIndicator from "./TimeIndicator.svelte";
   import { onMount } from "svelte";
+  import { store } from "../../js/store.svelte";
 
   let { foliateView: view }: { foliateView: FoliateView } = $props();
 
@@ -40,7 +41,7 @@
     ></Button>
     <div class="bottom-mid">
       <Button iconMd="material:first_page" />
-      <Button iconMd="material:toc" tooltip="Table of Contents" />
+      <Link iconMd="material:toc" tooltip="Table of Contents" href="toc" />
       <Button iconMd="material:last_page" />
     </div>
     <div class="bottom-right">
@@ -54,6 +55,7 @@
     </div>
   </div>
 </div>
+<TableOfContents />
 
 <style>
   :global(#overlay) {
