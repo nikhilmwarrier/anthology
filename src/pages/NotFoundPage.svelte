@@ -7,7 +7,7 @@
   <Block>
     <h1>Not Found</h1>
     <pre>
-      {JSON.stringify(f7.views.current.router.currentRoute, null, 2)}
+      {JSON.stringify(f7.views.main.router.currentRoute, null, 2)}
     </pre>
   </Block>
 </Page>

@@ -1,3 +1,4 @@
+import TableOfContents from "../components/reader/TableOfContents.svelte";
 import SettingsPanel from "../components/settings/SettingsPanel.svelte";
 import Home from "../pages/Home.svelte";
 import NotFoundPage from "../pages/NotFoundPage.svelte";
@@ -9,13 +10,19 @@ const routes = [
     component: Home,
   },
   {
-    path: "/reader/",
+    path: "/reader",
     component: ReaderPage,
   },
   {
     path: "/reader/settings",
     popup: {
       component: SettingsPanel,
+    },
+  },
+  {
+    path: "/reader/toc",
+    popup: {
+      component: TableOfContents,
     },
   },
   {

@@ -1,9 +1,21 @@
 <script lang="ts">
   import { onDestroy, onMount } from "svelte";
-  import { store, type ReaderSettings } from "../../js/store.svelte";
-  import type { FoliateView, PageItem, TOCItem } from "../../types/view";
+  import {
+    defaultBookState,
+    store,
+    type BookState,
+    type ReaderSettings,
+  } from "../../js/store.svelte";
+  import type {
+    CFIString,
+    FoliateView,
+    PageItem,
+    TOCItem,
+  } from "../../types/types";
   import { StatusBar } from "@capacitor/status-bar";
   import Overlay from "./Overlay.svelte";
+  import getBookDoc from "../../js/helpers/getBookDoc";
+  import { f7 } from "framework7-svelte";
 
   const getCSS = (settings: ReaderSettings) => `
     @namespace epub "http://www.idpf.org/2007/ops";
@@ -69,7 +81,6 @@
     await import("foliate-js/view.js");
     try {
       await loadBook(store.currentBookPath);
-      // alert(store.currentBookPath);
       await StatusBar.hide();
     } catch (e) {
       console.error(e);
@@ -86,11 +97,21 @@
     try {
       await view.open(bookPath);
 
+      store.currentBookDoc = await getBookDoc(bookPath);
+
+      let bookState = defaultBookState;
+
+      if (!store.bookStates[bookPath]) {
+        store.bookStates[bookPath] = bookState;
+      } else {
+        bookState = store.bookStates[bookPath];
+      }
+
       // view.renderer.setAttribute("margin", "0px"); // Remove unnecessary margins
       view.renderer.setAttribute("gap", "2ch");
       view.renderer.setStyles?.(styles);
 
-      view.goTo(0);
+      view.init({ lastLocation: bookState.lastLocation || "" });
     } catch (e) {
       console.error("Failed to load book:", e);
     }
@@ -103,11 +124,12 @@
           tocItem: TOCItem | null;
           pageItem: PageItem | null;
           fraction: number | null;
+          cfi: CFIString | null;
         };
       }) => {
         const { tocItem, pageItem, fraction } = e.detail;
 
-        console.log("e.detail", e.detail);
+        store.bookStates[store.currentBookPath].lastLocation = e.detail.cfi;
 
         currentChapter = tocItem?.label || "";
         currentPageLabel = pageItem?.label || ""; // From EPUB page-list

@@ -6,17 +6,19 @@
 </script>
 
 <BlockTitle>Settings</BlockTitle>
-<List>
-  <ToggleItem
-    title="Invert Images"
-    bind:checked={store.settings.invertImages}
-  />
-  <ToggleItem title="Justify Text" bind:checked={store.settings.justify} />
-  <ToggleItem title="Hyphenate" bind:checked={store.settings.hyphenate} />
-  <StepperItem title="Spacing" max={50} bind:value={store.settings.spacing} />
-  <StepperItem
-    title="Font Size"
-    max={50}
-    bind:value={store.settings.fontSize}
-  />
-</List>
+{#if store.settings}
+  <List>
+    <ToggleItem
+      title="Invert Images"
+      bind:checked={store.settings.invertImages}
+    />
+    <ToggleItem title="Justify Text" bind:checked={store.settings.justify} />
+    <ToggleItem title="Hyphenate" bind:checked={store.settings.hyphenate} />
+    <StepperItem title="Spacing" max={50} bind:value={store.settings.spacing} />
+    <StepperItem
+      title="Font Size"
+      max={50}
+      bind:value={store.settings.fontSize}
+    />
+  </List>
+{/if}

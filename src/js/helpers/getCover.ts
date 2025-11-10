@@ -1,9 +1,6 @@
-import { Capacitor } from "@capacitor/core";
-import type { BookDoc } from "../../types/types";
-
-// @ts-ignore
-import { makeBook } from "foliate-js/view.js";
 import type { FileInfo } from "@nikhilmwarrier/capacitor-directory-picker";
+import getBookDoc from "./getBookDoc";
+import { Capacitor } from "@capacitor/core";
 
 // TODO: Implement fallback cover.
 
@@ -14,7 +11,7 @@ import type { FileInfo } from "@nikhilmwarrier/capacitor-directory-picker";
  */
 export default async function getCover(bookFile: FileInfo) {
   const url = Capacitor.convertFileSrc(bookFile.uri);
-  const book: BookDoc = await makeBook(url);
+  const book = await getBookDoc(url);
   const coverBlob = await book.getCover();
 
   if (coverBlob) {

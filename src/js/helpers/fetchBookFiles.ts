@@ -5,7 +5,7 @@ import { store } from "../store.svelte";
 import { getBooksDirectory } from "./booksDirectory";
 
 const getLastOpened = (filepath: string) =>
-  store.bookStates.get(filepath)?.lastOpened || Date.now();
+  store.bookStates[filepath]?.lastOpened || Date.now();
 
 /**
  * Read books from bookdir and save them to `store.bookFiles[]`

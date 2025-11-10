@@ -1,4 +1,12 @@
-import type { BookDoc, BookFile, BookLocationDetail } from "../types/types";
+import { SvelteMap, SvelteSet } from "svelte/reactivity";
+import {
+  type BookDoc,
+  type BookFile,
+  type BookLocationDetail,
+  type CFIString,
+} from "../types/types";
+import DefaultMap from "./lib/DefaultMap";
+import { loadBooksState, saveBooksState } from "./helpers/booksState";
 
 export type ReaderSettings = {
   invertImages: boolean;
@@ -14,25 +22,59 @@ export interface Book extends BookDoc {
 
 export type BookState = {
   settings: ReaderSettings;
-  location: BookLocationDetail["location"];
+  lastOpened: EpochTimeStamp;
+  lastLocation: CFIString | null;
+};
+
+export type BooksStateObject = { [bookPath: string]: BookState };
+
+const defaultReaderSettings: ReaderSettings = {
+  invertImages: true,
+  justify: true,
+  hyphenate: true,
+  spacing: 16,
+  fontSize: 16,
+};
+
+export const defaultBookState: BookState = {
+  settings: defaultReaderSettings,
+  lastOpened: 0,
+  lastLocation: null,
 };
 
 class GlobalState {
   currentBookPath = $state("/book.epub");
-  bookStates = $state(new Map<string, BookState>());
+  bookStates = $state<BooksStateObject>({});
   bookFiles = $state<BookFile[]>([]);
+  currentBookDoc = $state<BookDoc>();
+  currentBookPos = $derived(
+    this.bookStates[this.currentBookPath]?.lastLocation || ""
+  );
 
-  settings = $state<ReaderSettings>({
-    invertImages: true,
-    justify: true,
-    hyphenate: true,
-    spacing: 14,
-    fontSize: 16,
-  });
+  constructor() {
+    loadBooksState().then(state => {
+      console.log("Loaded state: ", state);
+      this.bookStates = state;
+    });
+  }
+
+  settings = $derived(this.bookStates[this.currentBookPath]?.settings);
+
+  // settings = $state<ReaderSettings>({
+  //   invertImages: true,
+  //   justify: true,
+  //   hyphenate: true,
+  //   spacing: 14,
+  //   fontSize: 16,
+  // });
 }
 
 export let store = new GlobalState();
 
 $effect.root(() => {
-  $inspect("Current: ", store.currentBookPath);
+  $inspect("Current: ", JSON.stringify(store.bookStates, null, 2));
+  $effect(() => {
+    saveBooksState(store.bookStates);
+    console.log("State saved.");
+  });
 });

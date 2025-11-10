@@ -1,14 +1,15 @@
 <script lang="ts">
   let { bookFile }: { bookFile: BookFile } = $props();
   import { f7 } from "framework7-svelte";
-  // @ts-ignore
-  import type { BookFile } from "../types/view";
+  import type { BookFile } from "../types/types";
   import { store } from "../js/store.svelte";
   import { Capacitor } from "@capacitor/core";
 
+  const router = f7.views.main.router;
+
   function handleClick() {
     store.currentBookPath = Capacitor.convertFileSrc(bookFile.uri);
-    f7.view.current.router.navigate("/reader/");
+    f7.view.current.router.navigate(`/reader`);
   }
 </script>
 

@@ -8,6 +8,7 @@ export interface BookDirectory {
 
 export interface BookFile extends FileInfo {
   coverSrc: string;
+  lastOpened: EpochTimeStamp;
 }
 
 export interface BookDoc {
