@@ -4,19 +4,18 @@
 
 <Navbar title="Anthology">
   <div class="navbar-inner">
-    <NavRight>
+    <!-- <NavRight>
       <Link
         searchbarEnable=".searchbar-demo"
         iconIos="f7:search"
         iconMd="material:search"
       />
-      <!-- <Link iconIos="f7:gear" iconMd="material:more_vert" panelOpen="right" /> -->
     </NavRight>
     <Searchbar
       class="searchbar-demo"
       expandable
       searchContainer=".search-list"
       searchIn=".item-title"
-    />
+    /> -->
   </div>
 </Navbar>
