@@ -1,7 +1,7 @@
 <script>
   function getFormattedTime() {
     const d = new Date();
-    return `${d.getHours().toLocaleString()}:${d.getMinutes().toLocaleString()}`;
+    return d.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" });
   }
 
   let currentTime = $state(getFormattedTime());
