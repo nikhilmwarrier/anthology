@@ -22,6 +22,7 @@
     "@capacitor-community/screen-brightness": "^7.0.0",
     "@capacitor/android": "^7.4.4",
     "@capacitor/app": "^7.1.0",
+    "@capacitor/assets": "^3.0.5",
     "@capacitor/cli": "^7.4.4",
     "@capacitor/core": "^7.4.4",
     "@capacitor/device": "^7.0.2",
