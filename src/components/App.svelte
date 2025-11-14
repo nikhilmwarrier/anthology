@@ -17,8 +17,12 @@
   // Framework7 Parameters
   let f7params: Framework7Parameters = {
     name: "Anthology", // App name
-    theme: "auto", // Automatic theme detection
+    theme: "md", // Automatic theme detection
+    darkMode: false,
     routes,
+    touch: {
+      tapHold: true,
+    },
   };
 
   onMount(() => {

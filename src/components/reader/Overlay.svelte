@@ -30,6 +30,24 @@
   function handleTOCNavigate(e: { href: string }) {
     view.goTo(e.href);
   }
+
+  async function goToNextSection() {
+    if (!view) return;
+    try {
+      await view.renderer.nextSection?.();
+    } catch (e) {
+      console.error("Failed to go to next chapter:", e);
+    }
+  }
+
+  async function goToPrevSection() {
+    if (!view) return;
+    try {
+      await view.renderer.prevSection?.();
+    } catch (e) {
+      console.error("Failed to go to next chapter:", e);
+    }
+  }
 </script>
 
 <div id="overlay">
@@ -44,13 +62,22 @@
     <Button back iconMd="material:arrow_back" iconIos="f7:back" tooltip="Back"
     ></Button>
     <div class="bottom-mid">
-      <Button iconMd="material:first_page" />
+      <Button
+        iconMd="material:first_page"
+        title="Previous Section"
+        on:click={() => goToPrevSection()}
+      />
       <Button
         iconMd="material:toc"
-        tooltip="Table of Contents"
+        title="Table of Contents"
+        tooltipTrigger="hover"
         popupOpen=".table-of-contents"
       />
-      <Button iconMd="material:last_page" />
+      <Button
+        iconMd="material:last_page"
+        title="Next Section"
+        on:click={() => goToNextSection()}
+      />
     </div>
     <div class="bottom-right">
       <TimeIndicator />
