@@ -42,6 +42,9 @@ class GlobalState {
   bookFiles = $state<BookFile[]>([]);
   currentBookDoc = $state<BookDoc>();
 
+  openedPopups = $state<HTMLDivElement[]>([]);
+  openedSheets = $state<HTMLDivElement[]>([]);
+
   // Creates object in bookStates if not exists
   currentBookState = $derived.by(() => {
     if (!this.bookStates[this.currentBookPath])
@@ -51,7 +54,7 @@ class GlobalState {
   currentBookPos = $derived(this.currentBookState.lastLocation || "");
 
   constructor() {
-    loadBooksState().then(state => {
+    loadBooksState().then((state) => {
       console.log("Loaded state: ", state);
       this.bookStates = state;
     });
@@ -63,9 +66,7 @@ class GlobalState {
 export let store = new GlobalState();
 
 $effect.root(() => {
-  $inspect("Current: ", JSON.stringify(store.bookStates, null, 2));
   $effect(() => {
     saveBooksState(store.bookStates);
-    console.log("State saved.");
   });
 });

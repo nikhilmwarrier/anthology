@@ -26,6 +26,10 @@
       bottomBarActive = false;
     }, 1000);
   });
+
+  function handleTOCNavigate(e: { href: string }) {
+    view.goTo(e.href);
+  }
 </script>
 
 <div id="overlay">
@@ -41,7 +45,11 @@
     ></Button>
     <div class="bottom-mid">
       <Button iconMd="material:first_page" />
-      <Link iconMd="material:toc" tooltip="Table of Contents" href="toc" />
+      <Button
+        iconMd="material:toc"
+        tooltip="Table of Contents"
+        popupOpen=".table-of-contents"
+      />
       <Button iconMd="material:last_page" />
     </div>
     <div class="bottom-right">
@@ -49,13 +57,13 @@
       <Link
         iconMd="material:more_vert"
         iconIos="f7:gear"
-        href="settings"
         tooltip="Settings"
+        sheetOpen=".reader-settings"
       />
     </div>
   </div>
 </div>
-<TableOfContents />
+<TableOfContents onNavigate={handleTOCNavigate} />
 
 <style>
   :global(#overlay) {

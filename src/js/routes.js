@@ -14,18 +14,6 @@ const routes = [
     component: ReaderPage,
   },
   {
-    path: "/reader/settings",
-    popup: {
-      component: SettingsPanel,
-    },
-  },
-  {
-    path: "/reader/toc",
-    popup: {
-      component: TableOfContents,
-    },
-  },
-  {
     path: "(.*)",
     component: NotFoundPage,
   },

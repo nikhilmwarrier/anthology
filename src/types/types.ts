@@ -11,6 +11,8 @@ export interface BookFile extends FileInfo {
   lastOpened: EpochTimeStamp;
 }
 
+export type TOCNavigateEvent = { href: string };
+
 export interface BookDoc {
   metadata: BookMetadata;
   rendition?: {
@@ -119,6 +121,7 @@ export interface FoliateView extends HTMLElement {
     index: number;
     anchor: (doc: Document) => Range;
   };
+  resolveHref: (href: string) => CFIString;
   // addAnnotation: (
   //   note: BookNote,
   //   remove?: boolean

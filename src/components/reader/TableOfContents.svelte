@@ -1,22 +1,48 @@
-<script>
+<script lang="ts">
   import { StatusBar } from "@capacitor/status-bar";
-  import { Navbar, Page, PageContent, Popup } from "framework7-svelte";
+  import {
+    f7,
+    Link,
+    Navbar,
+    NavRight,
+    Page,
+    PageContent,
+    Popup,
+    Treeview,
+  } from "framework7-svelte";
   import { onDestroy, onMount } from "svelte";
   import { store } from "../../js/store.svelte";
+  import TOCTree from "./TOCTree.svelte";
+  import type { TOCNavigateEvent } from "../../types/types";
+  import BasePopup from "../base/BasePopup.svelte";
+
+  let { onNavigate }: { onNavigate: (e: TOCNavigateEvent) => void } = $props();
+
+  let popup = $state<BasePopup>();
+
+  function handleNavigate(e: TOCNavigateEvent) {
+    f7.popup.close(".table-of-contents");
+    onNavigate(e);
+  }
 
   onMount(async () => await StatusBar.show());
   onDestroy(async () => await StatusBar.hide());
 </script>
 
-<Popup class="table-of-contents" swipeToClose>
-  <Page name="table-of-contents">
-    <Navbar title="Table of Contents" backLink />
-    <PageContent>
-      {#if store.currentBookDoc}
-        {#each store.currentBookDoc.toc as tocItem}
-          <pre>{JSON.stringify(tocItem, null, 2)}</pre>
-        {/each}
-      {/if}
-    </PageContent>
+<BasePopup bind:this={popup} swipeToClose class="table-of-contents">
+  <Navbar title="Table of Contents">
+    <NavRight>
+      <Link popupClose iconMd="material:close" />
+    </NavRight>
+  </Navbar>
+  <Page>
+    {#if store.currentBookDoc}
+      <Treeview>
+        <TOCTree
+          onNavigate={handleNavigate}
+          tocItems={store.currentBookDoc.toc || []}
+        />
+      </Treeview>
+    {/if}
   </Page>
-</Popup>
+</BasePopup>

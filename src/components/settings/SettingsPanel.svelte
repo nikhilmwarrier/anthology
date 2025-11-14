@@ -1,8 +1,8 @@
 <script>
-  import { Sheet } from "framework7-svelte";
   import Settings from "./Settings.svelte";
+  import BaseSheet from "../base/BaseSheet.svelte";
 </script>
 
-<Sheet push swipeToClose style="height: auto;">
+<BaseSheet class="reader-settings" swipeToClose style="height: auto;">
   <Settings />
-</Sheet>
+</BaseSheet>
