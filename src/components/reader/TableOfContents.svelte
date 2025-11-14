@@ -1,14 +1,11 @@
 <script lang="ts">
   import { StatusBar } from "@capacitor/status-bar";
   import {
-    Block,
     f7,
     Link,
     Navbar,
     NavRight,
     Page,
-    PageContent,
-    Popup,
     Treeview,
   } from "framework7-svelte";
   import { onDestroy, onMount } from "svelte";
@@ -38,7 +35,7 @@
   </Navbar>
 
   <Page>
-    {#if store.currentBookDoc}
+    {#if store.currentBookDoc && store.currentBookDoc.toc && store.currentBookDoc.toc?.length > 0}
       <div class="space" style="padding: 1rem;"></div>
       <Treeview>
         <TOCTree
@@ -47,6 +44,25 @@
           tocItems={store.currentBookDoc.toc || []}
         />
       </Treeview>
+    {:else}
+      <div class="no-toc-found">
+        <p>Table of Contents not found.</p>
+      </div>
     {/if}
   </Page>
 </BasePopup>
+
+<style>
+  .no-toc-found {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    p {
+      opacity: 0.25;
+      font-size: 1.5rem;
+    }
+  }
+</style>
