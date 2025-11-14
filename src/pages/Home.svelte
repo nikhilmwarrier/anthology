@@ -67,13 +67,57 @@
       </Block>
     </swiper-slide>
     <swiper-slide id="tab-2" class="tab page-content">
-      <List strong inset dividersIos>
+      <BlockTitle>Settings</BlockTitle>
+      <List strong inset>
         <ListItem
           link="#"
           title="Change books directory"
           on:click={handleChangeBooksDirectory}
-        ></ListItem>
+        />
       </List>
+
+      <BlockTitle>Download Books</BlockTitle>
+      <List strong inset>
+        <a href="https://standardebooks.org/" class="external">
+          <ListItem title="Standard Ebooks">
+            <Icon
+              md="material:open_in_new"
+              style="opacity: 0.3;"
+              color="white"
+              size={22}
+            />
+          </ListItem>
+        </a>
+        <a href="https://www.gutenberg.org/" class="external">
+          <ListItem title="Project Gutenberg">
+            <Icon
+              md="material:open_in_new"
+              style="opacity: 0.3;"
+              color="white"
+              size={22}
+            />
+          </ListItem>
+        </a>
+      </List>
+
+      <BlockTitle>About</BlockTitle>
+
+      <List strong inset>
+        <a href="https://github.com/nikhilmwarrier/anthology" class="external">
+          <ListItem title="Source Code">
+            <Icon
+              md="material:open_in_new"
+              style="opacity: 0.3;"
+              color="white"
+              size={22}
+            />
+          </ListItem>
+        </a>
+      </List>
+
+      <Block>
+        <p class="version">Version 0.0.1</p>
+      </Block>
     </swiper-slide>
   </Tabs>
 </Page>
@@ -81,5 +125,10 @@
 <style>
   .page-content {
     padding: 0;
+  }
+
+  .version {
+    text-align: right;
+    opacity: 0.3;
   }
 </style>
