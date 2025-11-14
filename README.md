@@ -1,17 +1,20 @@
-# Anthology
+<p align="center"><img src="./assets/logo.svg" width="150"></p>
+<h1 align="center"><b>Anthology</b></h1>
+<h4 align="center">Sleek, fast ebook reader for Android</h4>
 
-Sleek, fast ebook reader for Android.
-
+<p align="center">
 <a href="https://github.com/nikhilmwarrier/anthology/releases">
-<img src="https://raw.githubusercontent.com/rubenpgrady/get-it-on-github/refs/heads/main/get-it-on-github.png" alt="Get it on GitHub" height="96" />
+<img align="center" src="https://raw.githubusercontent.com/rubenpgrady/get-it-on-github/refs/heads/main/get-it-on-github.png" alt="Get it on GitHub" height="96" />
 </a>
+</p>
 
 ## Screenshots
 
+<p align="center">
 <img width="300px" src="./assets/screenshot-home.png" alt="Anthology app: Home screen" />
 <img width="300px" src="./assets/screenshot-book.png" alt="Reader screen" />
-<img width="300px" src="./assets/screenshot-toc.png" alt="Table of contents" />
 <img width="300px" src="./assets/screenshot-settings.png" alt="Settings" />
+</p>
 
 ## Powered by
 
