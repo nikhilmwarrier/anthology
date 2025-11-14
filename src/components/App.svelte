@@ -17,8 +17,8 @@
   // Framework7 Parameters
   let f7params: Framework7Parameters = {
     name: "Anthology", // App name
-    theme: "md", // Automatic theme detection
-    darkMode: false,
+    theme: "md",
+    darkMode: "auto",
     routes,
     touch: {
       tapHold: true,
@@ -54,7 +54,7 @@
   });
 </script>
 
-<App {...f7params} dark>
+<App {...f7params}>
   <SettingsPanel />
   <View main class="safe-areas" url="/" />
 </App>
