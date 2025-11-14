@@ -1,6 +1,7 @@
 <script lang="ts">
   import { StatusBar } from "@capacitor/status-bar";
   import {
+    Block,
     f7,
     Link,
     Navbar,
@@ -35,10 +36,13 @@
       <Link popupClose iconMd="material:close" />
     </NavRight>
   </Navbar>
+
   <Page>
     {#if store.currentBookDoc}
+      <div class="space" style="padding: 1rem;"></div>
       <Treeview>
         <TOCTree
+          offset={1}
           onNavigate={handleNavigate}
           tocItems={store.currentBookDoc.toc || []}
         />
