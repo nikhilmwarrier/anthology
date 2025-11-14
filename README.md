@@ -11,9 +11,9 @@
 ## Screenshots
 
 <p align="center">
-<img width="300px" src="./assets/screenshot-home.png" alt="Anthology app: Home screen" />
-<img width="300px" src="./assets/screenshot-book.png" alt="Reader screen" />
-<img width="300px" src="./assets/screenshot-settings.png" alt="Settings" />
+<img width="250px" src="./assets/screenshot-home.png" alt="Anthology app: Home screen" />
+<img width="250px" src="./assets/screenshot-book.png" alt="Reader screen" />
+<img width="250px" src="./assets/screenshot-settings.png" alt="Settings" />
 </p>
 
 ## Powered by
