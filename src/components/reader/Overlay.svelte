@@ -5,6 +5,7 @@
   import TimeIndicator from "./TimeIndicator.svelte";
   import { onMount } from "svelte";
   import { store } from "../../js/store.svelte";
+  import BrightnessControlOverlay from "./BrightnessControlOverlay.svelte";
 
   let { foliateView: view }: { foliateView: FoliateView } = $props();
 
@@ -51,6 +52,8 @@
 </script>
 
 <div id="overlay">
+  <BrightnessControlOverlay />
+
   <div class="top"></div>
   <button class="btn-prev-page" onclick={() => turnPage(-1)}>
     Previous Page
@@ -109,7 +112,6 @@
     width: 100%;
     height: 100%;
     position: absolute;
-    opacity: 0.5;
     z-index: 2;
     display: grid;
     pointer-events: none;

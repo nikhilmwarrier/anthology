@@ -8,6 +8,9 @@ importers:
 
   .:
     dependencies:
+      '@capacitor-community/screen-brightness':
+        specifier: ^7.0.0
+        version: 7.0.0(@capacitor/core@7.4.4)
       '@capacitor/android':
         specifier: ^7.4.4
         version: 7.4.4(@capacitor/core@7.4.4)
@@ -77,6 +80,11 @@ importers:
         version: 7.2.1(@types/node@24.10.0)
 
 packages:
+
+  '@capacitor-community/screen-brightness@7.0.0':
+    resolution: {integrity: sha512-Fr3zgYryuOQD4JFiaPWCH9d221OClt44VsZmF0v5jn3QmWHT+PMWBiWteiIxDSSyfpcrzFd+uhzyXIyCrv5iYg==}
+    peerDependencies:
+      '@capacitor/core': '>=7.0.0'
 
   '@capacitor/android@7.4.4':
     resolution: {integrity: sha512-y8knfV1JXNrd6XZZLZireGT+EBCN0lvOo+HZ/s7L8LkrPBu4nY5UZn0Wxz4yOezItEII9rqYJSHsS5fMJG9gdw==}
@@ -1038,6 +1046,10 @@ packages:
     resolution: {integrity: sha512-B58NGBEoc8Y9MWWCQGl/gq9xBCe4IiKM0a2x7GZdQKOW5Exr8S1W24J6OgM1njK8xCRGvAJIL/MxXHf6SkmQKQ==}
 
 snapshots:
+
+  '@capacitor-community/screen-brightness@7.0.0(@capacitor/core@7.4.4)':
+    dependencies:
+      '@capacitor/core': 7.4.4
 
   '@capacitor/android@7.4.4(@capacitor/core@7.4.4)':
     dependencies:

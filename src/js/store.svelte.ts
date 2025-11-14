@@ -7,6 +7,8 @@ export type ReaderSettings = {
   hyphenate: boolean;
   spacing: number;
   fontSize: number;
+  autoBrightness: boolean;
+  brightness: number;
 };
 
 export interface Book extends BookDoc {
@@ -27,6 +29,8 @@ const defaultReaderSettings: ReaderSettings = {
   hyphenate: true,
   spacing: 16,
   fontSize: 16,
+  autoBrightness: true,
+  brightness: 1,
 };
 
 export const defaultBookState: BookState = {

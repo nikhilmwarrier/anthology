@@ -3,6 +3,7 @@
   import ToggleItem from "./ToggleItem.svelte";
   import { store } from "../../js/store.svelte";
   import StepperItem from "./StepperItem.svelte";
+  import RangeItem from "./RangeItem.svelte";
 </script>
 
 <BlockTitle>Settings</BlockTitle>
@@ -20,5 +21,18 @@
       max={50}
       bind:value={store.settings.fontSize}
     />
+    <ToggleItem
+      title="Auto Brightness"
+      bind:checked={store.settings.autoBrightness}
+    />
+    {#if !store.settings.autoBrightness}
+      <RangeItem
+        title="Brightness"
+        min={-100}
+        max={100}
+        step={5}
+        bind:value={store.settings.brightness}
+      />
+    {/if}
   </List>
 {/if}
