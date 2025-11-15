@@ -1,6 +1,6 @@
 name: Android APK Build
 
-on:
+on:Release 
   workflow_dispatch:
   push:
     tags:
@@ -63,13 +63,11 @@ jobs:
         run: chmod +x ./gradlew
         working-directory: ./android
 
-      # FIX 1: Create the keystore inside 'app/'
       - name: Setup Keystore
         run: |
           echo "${{ secrets.ANDROID_KEYSTORE_BASE64 }}" | base64 --decode > app/keystore.jks
         working-directory: ./android
 
-      # FIX 2: Verify the keystore inside 'app/'
       - name: Verify Keystore File
         run: |
           if [ -s "app/keystore.jks" ]; then
@@ -78,23 +76,18 @@ jobs:
             echo "Keystore file is missing or empty!" && exit 1
           fi
         working-directory: ./android
+      
+      # REMOVED the 'Create Gradle Properties' step
 
-      # FIX 3: Point to 'keystore.jks' (relative to app/build.gradle)
-      - name: Create Gradle Properties
-        run: |
-          echo "RELEASE_STORE_FILE=keystore.jks" >> gradle.properties
-          echo "RELEASE_STORE_PASSWORD=$RELEASE_STORE_PASSWORD" >> gradle.properties
-          echo "RELEASE_KEY_ALIAS=$RELEASE_KEY_ALIAS" >> gradle.properties
-          echo "RELEASE_KEY_PASSWORD=$RELEASE_KEY_PASSWORD" >> gradle.properties
-        working-directory: ./android
-        env:
-          RELEASE_STORE_PASSWORD: ${{ secrets.ANDROID_KEYSTORE_PASSWORD }}
-          RELEASE_KEY_ALIAS: ${{ secrets.ANDROID_KEY_ALIAS }}
-          RELEASE_KEY_PASSWORD: ${{ secrets.ANDROID_KEY_PASSWORD }}
-
+      # The signing secrets are now passed as environment variables
       - name: Build Release APK
         run: ./gradlew clean assembleRelease
         working-directory: ./android
+        env:
+          RELEASE_STORE_FILE: 'keystore.jks'
+          RELEASE_STORE_PASSWORD: ${{ secrets.ANDROID_KEYSTORE_PASSWORD }}
+          RELEASE_KEY_ALIAS: ${{ secrets.ANDROID_KEY_ALIAS }}
+          RELEASE_KEY_PASSWORD: ${{ secrets.ANDROID_KEY_PASSWORD }}
 
       - name: List APK Outputs
         run: find app/build/outputs/apk -type f -name "*.apk"
