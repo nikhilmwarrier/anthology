@@ -38,6 +38,14 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
+    // See: https://android.izzysoft.de/articles/named/iod-scan-apkchecks
+    dependenciesInfo {
+        // Disable including dependency metadata when building APKs
+        includeInApk false
+        // Disable including dependency metadata when building Android App Bundles
+        includeInBundle false
+    }
 }
 
 repositories {
