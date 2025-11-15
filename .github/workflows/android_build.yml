@@ -20,22 +20,22 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      # --- Node/NPM Steps (at root) ---
+      # --- Node/pnpm Steps (at root) ---
       
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
           node-version: '20' # Or your project's version
-          cache: 'npm'
+          cache: 'pnpm' # Set cache to pnpm
       
       - name: Install Web Dependencies
-        run: npm ci
+        run: pnpm install # Use pnpm install
 
       - name: Build Web App
-        run: npm run build
+        run: pnpm run build # Use pnpm
 
       - name: Sync Capacitor Assets
-        run: npx cap sync
+        run: pnpm cap sync # Use pnpm
 
       # --- Java/Android Steps (in ./android) ---
 
@@ -51,12 +51,11 @@ jobs:
           path: |
             ~/.gradle/caches
             ~/.gradle/wrapper
-          # This hash path is still correct (relative to root)
           key: gradle-${{ runner.os }}-${{ hashFiles('android/**/*.gradle*', 'android/**/gradle-wrapper.properties') }}
           restore-keys: |
             gradle-${{ runner.os }}-
 
-      # All 'run' steps below now specify the working-directory
+      # All 'run' steps below specify the working-directory
       
       - name: Clean Build Directory
         run: rm -rf app/build
@@ -88,7 +87,6 @@ jobs:
         run: find app/build/outputs/apk -type f -name "*.apk"
         working-directory: ./android
 
-      # This path is relative to the root, so it's still correct
       - name: Upload APK Artifact (Release)
         uses: actions/upload-artifact@v4
         with:
