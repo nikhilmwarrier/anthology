@@ -9,16 +9,23 @@ jobs:
   build:
     name: Build Signed APK
     runs-on: ubuntu-latest
+
+    # This block tells all 'run:' steps to execute inside './android'
+    defaults:
+      run:
+        working-directory: ./android
+
     env:
       ANDROID_KEYSTORE_PASSWORD: ${{ secrets.ANDROID_KEYSTORE_PASSWORD }}
       ANDROID_KEY_ALIAS: ${{ secrets.ANDROID_KEY_ALIAS }}
       ANDROID_KEY_PASSWORD: ${{ secrets.ANDROID_KEY_PASSWORD }}
 
     steps:
+      # 1. Checks out code (at the root)
       - name: Checkout code
-      - uses: actions/checkout@v4
-      - working-directory: android
+        uses: actions/checkout@v4
 
+      # These setup steps run normally
       - name: Set up JDK 17
         uses: actions/setup-java@v3
         with:
@@ -31,10 +38,12 @@ jobs:
           path: |
             ~/.gradle/caches
             ~/.gradle/wrapper
-          key: gradle-${{ runner.os }}-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
+          # We tell 'hashFiles' to look inside the android folder
+          key: gradle-${{ runner.os }}-${{ hashFiles('android/**/*.gradle*', 'android/**/gradle-wrapper.properties') }}
           restore-keys: |
             gradle-${{ runner.os }}-
 
+      # 2. FROM HERE ON: All 'run:' steps execute inside './android'
       - name: Clean Build Directory
         run: rm -rf app/build
 
@@ -60,8 +69,10 @@ jobs:
       - name: List APK Outputs
         run: find app/build/outputs/apk -type f -name "*.apk"
 
+      # This action still runs from the root, so its path must be specified
+      # relative to the root.
       - name: Upload APK Artifact (Release)
         uses: actions/upload-artifact@v4
         with:
           name: release-apk
-          path: app/build/outputs/apk/release/*.apk
+          path: android/app/build/outputs/apk/release/*.apk
