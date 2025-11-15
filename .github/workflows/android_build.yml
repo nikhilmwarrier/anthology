@@ -1,6 +1,6 @@
 name: Android APK Build
 
-on:Release 
+on:
   workflow_dispatch:
   push:
     tags:
@@ -77,11 +77,13 @@ jobs:
           fi
         working-directory: ./android
       
-      # REMOVED the 'Create Gradle Properties' step
-
-      # The signing secrets are now passed as environment variables
       - name: Build Release APK
-        run: ./gradlew clean assembleRelease
+        run: |
+          ./gradlew clean assembleRelease \
+            -PRELEASE_STORE_FILE="$RELEASE_STORE_FILE" \
+            -PRELEASE_STORE_PASSWORD="$RELEASE_STORE_PASSWORD" \
+            -PRELEASE_KEY_ALIAS="$RELEASE_KEY_ALIAS" \
+            -PRELEASE_KEY_PASSWORD="$RELEASE_KEY_PASSWORD"
         working-directory: ./android
         env:
           RELEASE_STORE_FILE: 'keystore.jks'
