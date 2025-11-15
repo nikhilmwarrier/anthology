@@ -1,18 +1,15 @@
 name: Android APK Build
 
-on:
+on:Release 
+  workflow_dispatch:
   push:
     tags:
       - '*'
-  workflow_dispatch:
-
 
 jobs:
   build:
     name: Build Signed APK
     runs-on: ubuntu-latest
-    
-    # Removed the job-level 'env:' block as it's not needed
 
     steps:
       - name: Checkout code
@@ -68,35 +65,29 @@ jobs:
 
       - name: Setup Keystore
         run: |
-          echo "${{ secrets.ANDROID_KEYSTORE_BASE64 }}" | base64 --decode > keystore.jks
+          echo "${{ secrets.ANDROID_KEYSTORE_BASE64 }}" | base64 --decode > app/keystore.jks
         working-directory: ./android
 
       - name: Verify Keystore File
         run: |
-          if [ -s "keystore.jks" ]; then
+          if [ -s "app/keystore.jks" ]; then
             echo "Keystore file exists and is non-empty."
           else
             echo "Keystore file is missing or empty!" && exit 1
           fi
         working-directory: ./android
+      
+      # REMOVED the 'Create Gradle Properties' step
 
-      # --- Simplified Signing Step ---
-      - name: Create Gradle Properties
-        run: |
-          echo "RELEASE_STORE_FILE=keystore.jks" >> gradle.properties
-          echo "RELEASE_STORE_PASSWORD=$RELEASE_STORE_PASSWORD" >> gradle.properties
-          echo "RELEASE_KEY_ALIAS=$RELEASE_KEY_ALIAS" >> gradle.properties
-          echo "RELEASE_KEY_PASSWORD=$RELEASE_KEY_PASSWORD" >> gradle.properties
-        working-directory: ./android
-        # Secrets are injected as env variables only for this step
-        env:
-          RELEASE_STORE_PASSWORD: ${{ secrets.ANDROID_KEYSTORE_PASSWORD }}
-          RELEASE_KEY_ALIAS: ${{ secrets.ANDROID_KEY_ALIAS }}
-          RELEASE_KEY_PASSWORD: ${{ secrets.ANDROID_KEY_PASSWORD }}
-
+      # The signing secrets are now passed as environment variables
       - name: Build Release APK
         run: ./gradlew clean assembleRelease
         working-directory: ./android
+        env:
+          RELEASE_STORE_FILE: 'keystore.jks'
+          RELEASE_STORE_PASSWORD: ${{ secrets.ANDROID_KEYSTORE_PASSWORD }}
+          RELEASE_KEY_ALIAS: ${{ secrets.ANDROID_KEY_ALIAS }}
+          RELEASE_KEY_PASSWORD: ${{ secrets.ANDROID_KEY_PASSWORD }}
 
       - name: List APK Outputs
         run: find app/build/outputs/apk -type f -name "*.apk"
