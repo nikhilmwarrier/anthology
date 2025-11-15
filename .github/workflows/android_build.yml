@@ -11,22 +11,34 @@ jobs:
     name: Build Signed APK
     runs-on: ubuntu-latest
 
-    # This block tells all 'run:' steps to execute inside './android'
-    defaults:
-      run:
-        working-directory: ./android
-
     env:
       ANDROID_KEYSTORE_PASSWORD: ${{ secrets.ANDROID_KEYSTORE_PASSWORD }}
       ANDROID_KEY_ALIAS: ${{ secrets.ANDROID_KEY_ALIAS }}
       ANDROID_KEY_PASSWORD: ${{ secrets.ANDROID_KEY_PASSWORD }}
 
     steps:
-      # 1. Checks out code (at the root)
       - name: Checkout code
         uses: actions/checkout@v4
 
-      # These setup steps run normally
+      # --- Node/NPM Steps (at root) ---
+      
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20' # Or your project's version
+          cache: 'npm'
+      
+      - name: Install Web Dependencies
+        run: npm ci
+
+      - name: Build Web App
+        run: npm run build
+
+      - name: Sync Capacitor Assets
+        run: npx cap sync
+
+      # --- Java/Android Steps (in ./android) ---
+
       - name: Set up JDK 17
         uses: actions/setup-java@v3
         with:
@@ -39,21 +51,25 @@ jobs:
           path: |
             ~/.gradle/caches
             ~/.gradle/wrapper
-          # We tell 'hashFiles' to look inside the android folder
+          # This hash path is still correct (relative to root)
           key: gradle-${{ runner.os }}-${{ hashFiles('android/**/*.gradle*', 'android/**/gradle-wrapper.properties') }}
           restore-keys: |
             gradle-${{ runner.os }}-
 
-      # 2. FROM HERE ON: All 'run:' steps execute inside './android'
+      # All 'run' steps below now specify the working-directory
+      
       - name: Clean Build Directory
         run: rm -rf app/build
+        working-directory: ./android
 
       - name: Grant execute permission for Gradle wrapper
         run: chmod +x ./gradlew
+        working-directory: ./android
 
       - name: Setup Keystore
         run: |
           echo "${{ secrets.ANDROID_KEYSTORE_BASE64 }}" | base64 --decode > keystore.jks
+        working-directory: ./android
 
       - name: Verify Keystore File
         run: |
@@ -62,16 +78,17 @@ jobs:
           else
             echo "Keystore file is missing or empty!" && exit 1
           fi
+        working-directory: ./android
 
       - name: Build Release APK
-        run: |
-          ./gradlew clean assembleRelease
+        run: ./gradlew clean assembleRelease
+        working-directory: ./android
 
       - name: List APK Outputs
         run: find app/build/outputs/apk -type f -name "*.apk"
+        working-directory: ./android
 
-      # This action still runs from the root, so its path must be specified
-      # relative to the root.
+      # This path is relative to the root, so it's still correct
       - name: Upload APK Artifact (Release)
         uses: actions/upload-artifact@v4
         with:
