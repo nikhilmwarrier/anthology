@@ -10,11 +10,8 @@ jobs:
   build:
     name: Build Signed APK
     runs-on: ubuntu-latest
-
-    env:
-      ANDROID_KEYSTORE_PASSWORD: ${{ secrets.ANDROID_KEYSTORE_PASSWORD }}
-      ANDROID_KEY_ALIAS: ${{ secrets.ANDROID_KEY_ALIAS }}
-      ANDROID_KEY_PASSWORD: ${{ secrets.ANDROID_KEY_PASSWORD }}
+    
+    # Removed the job-level 'env:' block as it's not needed
 
     steps:
       - name: Checkout code
@@ -48,7 +45,7 @@ jobs:
         uses: actions/setup-java@v3
         with:
           distribution: 'temurin'
-          java-version: 21 # Changed from 17 to 21
+          java-version: 21
 
       - name: Cache Gradle dependencies
         uses: actions/cache@v3
@@ -81,6 +78,20 @@ jobs:
             echo "Keystore file is missing or empty!" && exit 1
           fi
         working-directory: ./android
+
+      # --- Simplified Signing Step ---
+      - name: Create Gradle Properties
+        run: |
+          echo "RELEASE_STORE_FILE=keystore.jks" >> gradle.properties
+          echo "RELEASE_STORE_PASSWORD=$RELEASE_STORE_PASSWORD" >> gradle.properties
+          echo "RELEASE_KEY_ALIAS=$RELEASE_KEY_ALIAS" >> gradle.properties
+          echo "RELEASE_KEY_PASSWORD=$RELEASE_KEY_PASSWORD" >> gradle.properties
+        working-directory: ./android
+        # Secrets are injected as env variables only for this step
+        env:
+          RELEASE_STORE_PASSWORD: ${{ secrets.ANDROID_KEYSTORE_PASSWORD }}
+          RELEASE_KEY_ALIAS: ${{ secrets.ANDROID_KEY_ALIAS }}
+          RELEASE_KEY_PASSWORD: ${{ secrets.ANDROID_KEY_PASSWORD }}
 
       - name: Build Release APK
         run: ./gradlew clean assembleRelease
