@@ -10,8 +10,6 @@ jobs:
   build:
     name: Build Signed APK
     runs-on: ubuntu-latest
-    
-    # Removed the job-level 'env:' block as it's not needed
 
     steps:
       - name: Checkout code
@@ -79,15 +77,15 @@ jobs:
           fi
         working-directory: ./android
 
-      # --- Simplified Signing Step ---
+      # --- THIS STEP IS FIXED ---
       - name: Create Gradle Properties
         run: |
-          echo "RELEASE_STORE_FILE=keystore.jks" >> gradle.properties
+          # Use '../keystore.jks' to point to the root 'android' directory
+          echo "RELEASE_STORE_FILE=../keystore.jks" >> gradle.properties
           echo "RELEASE_STORE_PASSWORD=$RELEASE_STORE_PASSWORD" >> gradle.properties
           echo "RELEASE_KEY_ALIAS=$RELEASE_KEY_ALIAS" >> gradle.properties
           echo "RELEASE_KEY_PASSWORD=$RELEASE_KEY_PASSWORD" >> gradle.properties
         working-directory: ./android
-        # Secrets are injected as env variables only for this step
         env:
           RELEASE_STORE_PASSWORD: ${{ secrets.ANDROID_KEYSTORE_PASSWORD }}
           RELEASE_KEY_ALIAS: ${{ secrets.ANDROID_KEY_ALIAS }}
