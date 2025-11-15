@@ -1,0 +1,13 @@
+<p>Designed for a fast, clean reading experience.</p>
+<b>Features</b>
+<ul>
+  <li>OLED-friendly reader mode.</li>
+  <li>Brightness can go below 0%.</li>
+  <li>A minimal overlay gives you access to a clock and navigation.</li>
+  <li>Includes convenient links to Project Gutenberg and Standard Ebooks.</li>
+  <li>Free and open-source (AGPLv3).</li>
+</ul>
+<p>
+  Note: Anthology is still in its early stages of development. Expect the usual
+  number of bugs and glitches.
+</p>
