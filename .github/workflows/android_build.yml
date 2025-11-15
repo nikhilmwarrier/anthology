@@ -16,10 +16,8 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4
-
-      - name: Change to Android folder
-        run: cd android
+      - uses: actions/checkout@v4
+      - run: cd android
 
       - name: Set up JDK 17
         uses: actions/setup-java@v3
