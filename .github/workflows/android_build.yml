@@ -22,15 +22,18 @@ jobs:
 
       # --- Node/pnpm Steps (at root) ---
       
+      # 1. Install pnpm (This replaces the 'corepack' step)
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 9 # You can change this to 10 or 'latest' if you prefer
+      
+      # 2. Set up Node.js (This will find and cache pnpm)
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '20' # Or your project's version
-          cache: 'pnpm'
-
-      # THIS IS THE FIX: Enable pnpm via Corepack
-      - name: Enable Corepack
-        run: corepack enable
+          node-version: '20'
+          cache: 'pnpm' # Caching is now handled correctly
       
       - name: Install Web Dependencies
         run: pnpm install
