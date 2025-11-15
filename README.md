@@ -18,7 +18,61 @@
 
 ## Powered by
 
+- [foliate-js](https://github.com/johnfactotum/foliate-js)
 - [Svelte](https://svelte.dev)
 - [Capacitor.js](https://capacitorjs.com/)
 - [Framework7](https://framework7.io)
-- [foliate-js](https://github.com/johnfactotum/foliate-js)
+
+## Build
+
+### 0. Prerequisites
+
+- Node.js
+- Android SDK
+- [pnpm](https://pnpm.io)
+- [just](https://github.com/casey/just)
+
+Set the environment variable:
+
+```env
+ANDROID_SDK_ROOT="path/to/Android/Sdk/"
+```
+
+### 1. Clone the repo:
+
+```bash
+$ git clone https://github.com/nikhilmwarrier/anthology && cd anthology
+```
+
+### 2. Install NPM dependencies
+
+```bash
+$ pnpm i
+```
+
+### 3. Build debug apk
+
+```bash
+$ just build_debug
+```
+
+The APK will be generated to `./android/app/build/outputs/apk/debug/app-debug.apk`.
+
+### Addendum: Build Release apk
+
+Set the following environment variables (or put them in a `.env` file).
+
+```env
+RELEASE_STORE_FILE="my_keystore.jks" # Relative to ./android/app/
+RELEASE_STORE_PASSWORD="my_keystore_password"
+RELEASE_KEY_ALIAS="my_key_alias"
+RELEASE_KEY_PASSWORD="my_key_password"
+```
+
+And then run:
+
+```bash
+$ just build_release
+```
+
+The signed APK will be generated to `./android/app/build/outputs/apk/release/app-release.apk`.
