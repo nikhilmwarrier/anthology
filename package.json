@@ -30,7 +30,7 @@
     "@capacitor/preferences": "^7.0.2",
     "@capacitor/status-bar": "^7.0.3",
     "@capawesome/capacitor-file-picker": "^7.2.0",
-    "@nikhilmwarrier/capacitor-directory-picker": "link:../capacitor-directory-picker",
+    "@nikhilmwarrier/capacitor-directory-picker": "github:nikhilmwarrier/capacitor-directory-picker",
     "foliate-js": "^1.0.1",
     "framework7": "^8.3.4",
     "framework7-icons": "^5.0.5",

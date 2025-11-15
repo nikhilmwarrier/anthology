@@ -42,8 +42,8 @@ importers:
         specifier: ^7.2.0
         version: 7.2.0(@capacitor/core@7.4.4)
       '@nikhilmwarrier/capacitor-directory-picker':
-        specifier: link:../capacitor-directory-picker
-        version: link:../capacitor-directory-picker
+        specifier: github:nikhilmwarrier/capacitor-directory-picker
+        version: https://codeload.github.com/nikhilmwarrier/capacitor-directory-picker/tar.gz/0a85af25950254fa4308a510552aa9e81e060e9f(@capacitor/core@7.4.4)
       foliate-js:
         specifier: ^1.0.1
         version: 1.0.1
@@ -395,6 +395,12 @@ packages:
 
   '@jridgewell/trace-mapping@0.3.9':
     resolution: {integrity: sha512-3Belt6tdc8bPgAtbcmdtNJlirVoTmEb5e2gC94PnkwEW9jI6CAHUeoG85tjWP5WquqfavoMtMwiG4P926ZKKuQ==}
+
+  '@nikhilmwarrier/capacitor-directory-picker@https://codeload.github.com/nikhilmwarrier/capacitor-directory-picker/tar.gz/0a85af25950254fa4308a510552aa9e81e060e9f':
+    resolution: {tarball: https://codeload.github.com/nikhilmwarrier/capacitor-directory-picker/tar.gz/0a85af25950254fa4308a510552aa9e81e060e9f}
+    version: 0.1.1
+    peerDependencies:
+      '@capacitor/core': '>=7.0.0'
 
   '@noble/hashes@1.8.0':
     resolution: {integrity: sha512-jCs9ldd7NwzpgXDIf6P3+NrHh9/sD6CQdxHyjQI+h/6rDNo88ypBxxz45UDuZHz9r3tNz7N/VInSVoVdtXEI4A==}
@@ -2636,6 +2642,10 @@ snapshots:
     dependencies:
       '@jridgewell/resolve-uri': 3.1.2
       '@jridgewell/sourcemap-codec': 1.5.5
+
+  '@nikhilmwarrier/capacitor-directory-picker@https://codeload.github.com/nikhilmwarrier/capacitor-directory-picker/tar.gz/0a85af25950254fa4308a510552aa9e81e060e9f(@capacitor/core@7.4.4)':
+    dependencies:
+      '@capacitor/core': 7.4.4
 
   '@noble/hashes@1.8.0': {}
 
