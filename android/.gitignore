@@ -89,6 +89,9 @@ lint/tmp/
 # Android Profiling
 *.hprof
 
+# Keystore
+app/keystore.jks
+
 # Cordova plugins for Capacitor
 capacitor-cordova-android-plugins
 
