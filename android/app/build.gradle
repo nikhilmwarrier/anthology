@@ -2,7 +2,7 @@ apply plugin: 'com.android.application'
 
 ext.versionMajor = 1
 ext.versionMinor = 0
-ext.versionPatch = 1
+ext.versionPatch = 2
 
 android {
     namespace "systems.nik.anthology"
@@ -22,7 +22,7 @@ android {
     }
     signingConfigs {
         release {
-            // These properties will be read from 'gradle.properties' if it exists
+            // Read from Gradle Project Properties (-P flag)
             if (project.hasProperty('RELEASE_STORE_FILE')) {
                 storeFile file(RELEASE_STORE_FILE)
                 storePassword RELEASE_STORE_PASSWORD
