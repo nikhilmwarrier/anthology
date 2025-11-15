@@ -26,16 +26,20 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '20' # Or your project's version
-          cache: 'pnpm' # Set cache to pnpm
+          cache: 'pnpm'
+
+      # THIS IS THE FIX: Enable pnpm via Corepack
+      - name: Enable Corepack
+        run: corepack enable
       
       - name: Install Web Dependencies
-        run: pnpm install # Use pnpm install
+        run: pnpm install
 
       - name: Build Web App
-        run: pnpm run build # Use pnpm
+        run: pnpm run build
 
       - name: Sync Capacitor Assets
-        run: pnpm cap sync # Use pnpm
+        run: pnpm cap sync
 
       # --- Java/Android Steps (in ./android) ---
 
@@ -54,8 +58,6 @@ jobs:
           key: gradle-${{ runner.os }}-${{ hashFiles('android/**/*.gradle*', 'android/**/gradle-wrapper.properties') }}
           restore-keys: |
             gradle-${{ runner.os }}-
-
-      # All 'run' steps below specify the working-directory
       
       - name: Clean Build Directory
         run: rm -rf app/build
