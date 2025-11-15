@@ -116,7 +116,7 @@
       </List>
 
       <Block>
-        <p class="version">Version 0.0.1</p>
+        <p class="version">Version 1.0.1</p>
       </Block>
     </swiper-slide>
   </Tabs>
