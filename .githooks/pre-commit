@@ -1,0 +1,9 @@
+#!/bin/sh
+
+# Check if android.permission.INTERNET exists and it's not commented out.
+match="$(grep 'android.permission.INTERNET' android/app/src/main/AndroidManifest.xml | grep -v '<!--')"
+
+if [[ -n $match ]]; then
+  echo -e "android.permission.INTERNET is still present in the manifest.\nIf this is intentional, delete this pre-commit hook."
+  exit 1
+fi
