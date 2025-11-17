@@ -7,6 +7,7 @@ init:
 
 # Deploy app to connected Android device
 preview:
+  scripts/remove_internet_permission.sh
   pnpm run build
   npx cap sync
   npx cap run android
@@ -17,10 +18,13 @@ run_server:
 
 # Deploy app with live reload
 run_app:
+  scripts/insert_internet_permission.sh
+  npx cap copy
   npx cap run android --live-reload
 
 # Build a debug apk to `./android/app/build/outputs/apk/debug/app-debug.apk`
 build_debug:
+  scripts/remove_internet_permission.sh
   pnpm run build
   npx cap sync
   cd android && ./gradlew assembleDebug
@@ -28,6 +32,7 @@ build_debug:
 
 # Build a release apk. Make sure the correct environment variables are set.
 build_release:
+  scripts/remove_internet_permission.sh
   pnpm run build
   npx cap sync
   cd android && ./gradlew clean assembleRelease \
