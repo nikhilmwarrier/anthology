@@ -44,11 +44,16 @@ ANDROID_SDK_ROOT="path/to/Android/Sdk/"
 $ git clone https://github.com/nikhilmwarrier/anthology && cd anthology
 ```
 
-### 2. Install NPM dependencies
+### 2. Initialise Repo
 
 ```bash
-$ pnpm i
+$ just init
 ```
+
+This installs the dependencies using [pnpm](https://pnpm.io).
+
+It also configures the hooks in the `.githooks/` directory, which may help
+catch mistakes before you commit them.
 
 ### 3. Build debug apk
 
