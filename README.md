@@ -3,9 +3,8 @@
 <h4 align="center">Sleek, fast ebook reader for Android</h4>
 
 <p align="center">
-<a href="https://github.com/nikhilmwarrier/anthology/releases">
-<img align="center" src="https://raw.githubusercontent.com/rubenpgrady/get-it-on-github/refs/heads/main/get-it-on-github.png" alt="Get it on GitHub" height="96" />
-</a>
+<a href="https://github.com/nikhilmwarrier/anthology/releases"><img src="https://github.com/user-attachments/assets/12ce90c4-4469-4bc1-92dc-719808777c10" alt="Get it on GitHub" width="200" /></a>
+<a href="https://apt.izzysoft.de/packages/systems.nik.anthology"><img src="https://gitlab.com/IzzyOnDroid/repo/-/raw/master/assets/IzzyOnDroidButtonGreyBorder_nofont.png" alt="Get it at IzzyOnDroid" width="200" /></a>
 </p>
 
 ## Screenshots
