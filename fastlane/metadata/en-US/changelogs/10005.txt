@@ -1,0 +1,4 @@
+- Monochrome icon variant
+- Add seekbar and read percentage
+- Fix contents clipping into navbar
+- Remove unnecessary permissions
