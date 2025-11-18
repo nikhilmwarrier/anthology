@@ -17,6 +17,7 @@ dependencies {
     implementation project(':capacitor-status-bar')
     implementation project(':capawesome-capacitor-file-picker')
     implementation project(':nikhilmwarrier-capacitor-directory-picker')
+    implementation project(':squareetlabs-capacitor-navigation-bar')
 
 }
 

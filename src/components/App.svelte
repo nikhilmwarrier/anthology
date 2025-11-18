@@ -11,6 +11,8 @@
   import type { Framework7Parameters } from "framework7/types";
   import SettingsPanel from "./settings/SettingsPanel.svelte";
   import { store } from "../js/store.svelte";
+  import { StatusBar } from "@capacitor/status-bar";
+  import { NavigationBar } from "@squareetlabs/capacitor-navigation-bar";
 
   const device = getDevice();
 

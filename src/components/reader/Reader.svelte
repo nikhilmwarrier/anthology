@@ -15,7 +15,7 @@
   import { StatusBar } from "@capacitor/status-bar";
   import Overlay from "./Overlay.svelte";
   import getBookDoc from "../../js/helpers/getBookDoc";
-  import { f7 } from "framework7-svelte";
+  import { hideSystemBars, showSystemBars } from "../../js/helpers/systemBars";
 
   const getCSS = (settings: ReaderSettings) => `
     @namespace epub "http://www.idpf.org/2007/ops";
@@ -39,7 +39,7 @@
     }`
         : ""
     }
-
+      
     p, li, blockquote, dd {
         line-height: ${settings.spacing / 10} !important;
         text-align: ${settings.justify ? "justify" : "start"} !important;
@@ -81,14 +81,16 @@
     await import("foliate-js/view.js");
     try {
       await loadBook(store.currentBookPath);
-      await StatusBar.hide();
+      hideSystemBars();
     } catch (e) {
+      alert(e);
       console.error(e);
     }
   });
 
   onDestroy(async () => {
     await StatusBar.show();
+    showSystemBars();
   });
 
   async function loadBook(bookPath: string) {

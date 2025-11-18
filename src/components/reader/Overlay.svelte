@@ -1,16 +1,17 @@
 <script lang="ts">
-  import { Button, f7, Link } from "framework7-svelte";
+  import { Button, Link } from "framework7-svelte";
   import type { FoliateView } from "../../types/types";
   import TableOfContents from "./TableOfContents.svelte";
   import TimeIndicator from "./TimeIndicator.svelte";
   import { onMount } from "svelte";
-  import { store } from "../../js/store.svelte";
   import BrightnessControlOverlay from "./BrightnessControlOverlay.svelte";
+  import { hideSystemBars } from "../../js/helpers/systemBars";
 
   let { foliateView: view }: { foliateView: FoliateView } = $props();
 
   function turnPage(n: number) {
     if (!view) return;
+    hideSystemBars();
     try {
       if (n === -1) view?.goLeft?.();
       else view?.goRight?.();
@@ -23,9 +24,7 @@
   let bottomBarOpacity = $derived(bottomBarActive ? 1 : 0.5);
 
   onMount(() => {
-    setTimeout(() => {
-      bottomBarActive = false;
-    }, 1000);
+    bottomBarActive = false;
   });
 
   function handleTOCNavigate(e: { href: string }) {

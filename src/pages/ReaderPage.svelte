@@ -1,8 +1,10 @@
 <script lang="ts">
-  import { Page } from "framework7-svelte";
+  import { Button, Link, Page, PageContent, Toolbar } from "framework7-svelte";
   import Reader from "../components/reader/Reader.svelte";
 </script>
 
 <Page name="reader" bgColor="black">
-  <Reader />
+  <PageContent>
+    <Reader />
+  </PageContent>
 </Page>

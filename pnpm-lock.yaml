@@ -44,6 +44,9 @@ importers:
       '@nikhilmwarrier/capacitor-directory-picker':
         specifier: github:nikhilmwarrier/capacitor-directory-picker
         version: https://codeload.github.com/nikhilmwarrier/capacitor-directory-picker/tar.gz/0a85af25950254fa4308a510552aa9e81e060e9f(@capacitor/core@7.4.4)
+      '@squareetlabs/capacitor-navigation-bar':
+        specifier: ^1.1.2
+        version: 1.1.2(@capacitor/core@7.4.4)
       foliate-js:
         specifier: ^1.0.1
         version: 1.0.1
@@ -533,6 +536,11 @@ packages:
     resolution: {integrity: sha512-TAcgQh2sSkykPRWLrdyy2AiceMckNf5loITqXxFI5VuQjS5tSuw3WlwdN8qv8vzjLAUTvYaH/mVjSFpbkFbpTg==}
     cpu: [x64]
     os: [win32]
+
+  '@squareetlabs/capacitor-navigation-bar@1.1.2':
+    resolution: {integrity: sha512-0Oiaieivfh8w+Xa71PprvHhCJRspIhRFlKtjVA4DyAzFO2gPjHXFzfaxaVH5lH7MQTS6Y9HHXw9Z+QiL40vI7A==}
+    peerDependencies:
+      '@capacitor/core': ^6.0.0 || ^7.0.0
 
   '@sveltejs/acorn-typescript@1.0.6':
     resolution: {integrity: sha512-4awhxtMh4cx9blePWl10HRHj8Iivtqj+2QdDCSMDzxG+XKa9+VCNupQuCuvzEhYPzZSrX+0gC+0lHA/0fFKKQQ==}
@@ -2735,6 +2743,10 @@ snapshots:
 
   '@rollup/rollup-win32-x64-msvc@4.52.5':
     optional: true
+
+  '@squareetlabs/capacitor-navigation-bar@1.1.2(@capacitor/core@7.4.4)':
+    dependencies:
+      '@capacitor/core': 7.4.4
 
   '@sveltejs/acorn-typescript@1.0.6(acorn@8.15.0)':
     dependencies:
