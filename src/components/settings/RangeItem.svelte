@@ -6,18 +6,9 @@
     max = 10,
     step = 1,
   } = $props();
-  import { Block, ListItem, Range } from "framework7-svelte";
+  import { ListItem, Range } from "framework7-svelte";
 </script>
 
 <ListItem>
-  <Range
-    {min}
-    {max}
-    {step}
-    label={true}
-    bind:value
-    scale={true}
-    scaleSteps={4}
-    scaleSubSteps={2}
-  />
+  <Range {min} {max} {step} label={true} bind:value />
 </ListItem>

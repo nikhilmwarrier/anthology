@@ -1,13 +1,15 @@
 <script lang="ts">
-  import { Button, Link } from "framework7-svelte";
+  import { Button, Link, Range } from "framework7-svelte";
   import type { FoliateView } from "../../types/types";
   import TableOfContents from "./TableOfContents.svelte";
-  import TimeIndicator from "./TimeIndicator.svelte";
   import { onMount } from "svelte";
   import BrightnessControlOverlay from "./BrightnessControlOverlay.svelte";
   import { hideSystemBars } from "../../js/helpers/systemBars";
 
-  let { foliateView: view }: { foliateView: FoliateView } = $props();
+  let {
+    foliateView: view,
+    fraction = $bindable(0),
+  }: { foliateView: FoliateView; fraction: number } = $props();
 
   function turnPage(n: number) {
     if (!view) return;
@@ -21,11 +23,20 @@
   }
 
   let bottomBarActive = $state(true);
+  let showSeekbar = $state(false);
   let bottomBarOpacity = $derived(bottomBarActive ? 1 : 0.5);
 
   onMount(() => {
     bottomBarActive = false;
   });
+
+  function handleSeekbarToggle() {
+    if (showSeekbar) showSeekbar = false;
+    else {
+      showSeekbar = true;
+      setTimeout(() => (showSeekbar = false), 1500);
+    }
+  }
 
   function handleTOCNavigate(e: { href: string }) {
     view.goTo(e.href);
@@ -61,6 +72,13 @@
     Next Page
   </button>
   <div class="bottom" style:--opacity={bottomBarOpacity}>
+    <div
+      class="seekbar"
+      style:--visibility={showSeekbar ? "visible" : "hidden"}
+    >
+      <Range min={0} max={1} step={0.01} bind:value={fraction}></Range>
+    </div>
+
     <Button back iconMd="material:arrow_back" iconIos="f7:back" tooltip="Back"
     ></Button>
     <div class="bottom-mid">
@@ -82,7 +100,9 @@
       />
     </div>
     <div class="bottom-right">
-      <TimeIndicator />
+      <Button tooltip="Seek" on:click={handleSeekbarToggle}>
+        <span>{Math.floor(fraction * 100)}%</span>
+      </Button>
       <Link
         iconMd="material:more_vert"
         iconIos="f7:gear"
@@ -177,6 +197,26 @@
       opacity: 1;
     }
     /* background: green; */
+  }
+
+  .seekbar {
+    --visibility: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    height: 1rem;
+    width: calc(100% - 1rem);
+    z-index: 5;
+    background: var(--f7-md-surface);
+    padding: 1rem;
+    border-radius: 999px;
+    left: 0.5rem;
+    bottom: 4rem;
+    visibility: var(--visibility);
+    &:hover {
+      visibility: visible;
+    }
   }
 
   .bottom-right,

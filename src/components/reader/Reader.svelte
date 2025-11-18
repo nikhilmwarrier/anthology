@@ -72,9 +72,14 @@
 
   let view = $state<FoliateView>();
 
-  let currentChapter = $state("");
+  let currentTOCItem = $state<TOCItem | null>();
   let currentPageLabel = $state("");
   let currentProgress = $state(0);
+
+  $effect(() => {
+    if (currentProgress === null || !view) return;
+    view.goToFraction(currentProgress);
+  });
 
   onMount(async () => {
     // @ts-ignore
@@ -125,7 +130,7 @@
 
         store.currentBookState.lastLocation = e.detail.cfi || "";
 
-        currentChapter = tocItem?.label || "";
+        currentTOCItem = tocItem;
         currentPageLabel = pageItem?.label || ""; // From EPUB page-list
         currentProgress = fraction || 0;
       };
@@ -166,7 +171,7 @@
 
 <div class="wrapper">
   {#if view}
-    <Overlay foliateView={view} />
+    <Overlay foliateView={view} bind:fraction={currentProgress} />
   {/if}
   <foliate-view bind:this={view}> </foliate-view>
 </div>
