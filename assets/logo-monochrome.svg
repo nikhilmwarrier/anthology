@@ -9,7 +9,7 @@
    id="svg1"
    inkscape:version="1.4.2 (ebf0e940d0, 2025-05-08)"
    sodipodi:docname="logo-monochrome.svg"
-   inkscape:export-filename="logo-fg.png"
+   inkscape:export-filename="logo-monochrome.png"
    inkscape:export-xdpi="192"
    inkscape:export-ydpi="192"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
@@ -26,15 +26,15 @@
      inkscape:pagecheckerboard="true"
      inkscape:deskcolor="#d1d1d1"
      inkscape:document-units="px"
-     inkscape:zoom="0.51462428"
-     inkscape:cx="-276.90104"
-     inkscape:cy="-5.8294956"
+     inkscape:zoom="0.79833447"
+     inkscape:cx="346.97236"
+     inkscape:cy="506.05356"
      inkscape:window-width="1920"
      inkscape:window-height="1054"
      inkscape:window-x="0"
      inkscape:window-y="26"
      inkscape:window-maximized="1"
-     inkscape:current-layer="layer2" />
+     inkscape:current-layer="g6" />
   <defs
      id="defs1" />
   <g
@@ -42,33 +42,21 @@
      id="layer2"
      inkscape:label="Layer 2"
      transform="translate(-5.6106177,7.2869434)">
-    <rect
-       style="display:inline;opacity:1;fill:#999999;fill-opacity:1;stroke:none;stroke-width:1.52311;stroke-linecap:square;paint-order:stroke fill markers"
-       id="rect4-3-2"
-       width="44.030502"
-       height="59.818333"
-       x="44.17823"
-       y="37.259029"
-       ry="4.100543"
-       rx="4.100543"
-       inkscape:label="book-bottom"
-       transform="translate(-1.0583336)" />
+    <path
+       d="M 87.150342,83.873383 H 63.638083 c -2.271701,0 -4.100525,-1.828824 -4.100525,-4.100525 V 37.259174 H 47.22048 c -2.2717,0 -4.100524,1.828824 -4.100524,4.100525 v 51.617004 c 0,2.271701 1.828824,4.100525 4.100524,4.100525 h 35.829338 c 2.2717,0 4.100524,-1.828824 4.100524,-4.100525 z"
+       style="display:inline;opacity:1;fill:#656565;stroke-width:1.52311;stroke-linecap:square;paint-order:stroke fill markers;fill-opacity:0.5"
+       id="path2"
+       inkscape:label="book-bottom" />
     <g
        id="g6"
        transform="translate(-0.14388201,2.4385368)">
-      <rect
-         style="display:inline;opacity:1;fill:#656565;fill-opacity:1;stroke:none;stroke-width:1.52311;stroke-linecap:square;paint-order:stroke fill markers"
-         id="rect4-3"
-         width="44.030502"
-         height="59.818333"
-         x="59.681385"
-         y="21.61661"
-         ry="4.100543"
-         rx="4.100543"
-         inkscape:label="book-top" />
       <path
-         d="m 83.638551,21.623025 v 27.162683 l 7.08071,-5.034318 7.17579,5.036902 h 0.005 V 21.623025 Z"
-         style="display:inline;opacity:0.9;fill:#c2c2c2;fill-opacity:1;stroke-width:1.5;stroke-linecap:square;paint-order:stroke fill markers"
+         d="m 97.900295,21.616792 v 27.16475 h -0.0052 l -7.17579,-5.036902 -7.080704,5.034318 V 21.616792 H 63.781965 c -2.271701,0 -4.100525,1.828824 -4.100525,4.100525 v 51.617004 c 0,2.271701 1.828824,4.100525 4.100525,4.100525 h 35.829337 c 2.271698,0 4.100528,-1.828824 4.100528,-4.100525 V 25.717317 c 0,-2.271701 -1.82883,-4.100525 -4.100528,-4.100525 z"
+         style="display:inline;opacity:1;fill:#656565;stroke-width:1.52311;stroke-linecap:square;paint-order:stroke fill markers;fill-opacity:1"
+         id="path1" />
+      <path
+         d="m 83.638572,21.616532 v 27.162683 l 7.08071,-5.034318 7.175794,5.036902 h 0.005 V 21.616532 Z"
+         style="display:inline;opacity:1;fill:#595959;stroke-width:1.5;stroke-linecap:square;paint-order:stroke fill markers;fill-opacity:0.30000001"
          id="path6"
          inkscape:label="bookmark" />
     </g>
