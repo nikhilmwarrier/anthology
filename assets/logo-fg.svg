@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="512"
+   height="512"
+   viewBox="0 0 135.46666 135.46667"
+   version="1.1"
+   id="svg1"
+   inkscape:version="1.4.2 (ebf0e940d0, 2025-05-08)"
+   sodipodi:docname="logo.svg"
+   inkscape:export-filename="logo-fg.png"
+   inkscape:export-xdpi="192"
+   inkscape:export-ydpi="192"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview1"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="true"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:document-units="px"
+     inkscape:zoom="0.94919784"
+     inkscape:cx="452.48733"
+     inkscape:cy="340.28733"
+     inkscape:window-width="1920"
+     inkscape:window-height="1054"
+     inkscape:window-x="0"
+     inkscape:window-y="26"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer2" />
+  <defs
+     id="defs1" />
+  <g
+     inkscape:groupmode="layer"
+     id="layer2"
+     inkscape:label="Layer 2"
+     transform="translate(-5.6106177,7.2869434)">
+    <rect
+       style="display:inline;opacity:0.5;fill:#c96600;fill-opacity:1;stroke:none;stroke-width:1.52311;stroke-linecap:square;paint-order:stroke fill markers"
+       id="rect4-3-2"
+       width="44.030502"
+       height="59.818333"
+       x="44.17823"
+       y="37.259029"
+       ry="4.100543"
+       rx="4.100543"
+       inkscape:label="book-bottom"
+       transform="translate(-1.0583336)" />
+    <g
+       id="g6"
+       transform="translate(-0.14388201,2.4385368)">
+      <rect
+         style="display:inline;opacity:1;fill:#c96600;fill-opacity:1;stroke:none;stroke-width:1.52311;stroke-linecap:square;paint-order:stroke fill markers"
+         id="rect4-3"
+         width="44.030502"
+         height="59.818333"
+         x="59.681385"
+         y="21.61661"
+         ry="4.100543"
+         rx="4.100543"
+         inkscape:label="book-top" />
+      <path
+         d="m 83.638551,21.376881 v 27.162683 l 7.08071,-5.034318 7.17579,5.036902 h 0.005 V 21.376881 Z"
+         style="display:inline;opacity:0.9;fill:#b20000;stroke-width:1.5;stroke-linecap:square;paint-order:stroke fill markers"
+         id="path6"
+         inkscape:label="bookmark" />
+    </g>
+  </g>
+</svg>
