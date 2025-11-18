@@ -2,8 +2,8 @@ set dotenv-load
 
 # Install dependencies and set up hooks
 init:
-  pnpm i
   git config --local core.hooksPath .githooks/
+  pnpm i
 
 # Deploy app to connected Android device
 preview:
