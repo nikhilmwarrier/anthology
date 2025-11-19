@@ -5,6 +5,11 @@
 <p align="center">
 <a href="https://github.com/nikhilmwarrier/anthology/releases"><img src="https://github.com/user-attachments/assets/12ce90c4-4469-4bc1-92dc-719808777c10" alt="Get it on GitHub" width="200" /></a>
 <a href="https://apt.izzysoft.de/packages/systems.nik.anthology"><img src="https://gitlab.com/IzzyOnDroid/repo/-/raw/master/assets/IzzyOnDroidButtonGreyBorder_nofont.png" alt="Get it at IzzyOnDroid" width="200" /></a>
+<br />
+<br />
+<a href="https://shields.rbtlog.dev/systems.nik.anthology">
+<img src="https://shields.rbtlog.dev/simple/systems.nik.anthology" alt="Reproducible Builds Log" />
+</a>
 </p>
 
 ## Screenshots
@@ -80,3 +85,11 @@ $ just build_release
 ```
 
 The signed APK will be generated to `./android/app/build/outputs/apk/release/app-release.apk`.
+
+## Donate
+
+You can support Anthology's development through my BuyMeACoffee page.
+
+<p align="center">
+<a href="https://buymeacoffee.com/niksystems"><img src="https://buymeacoffee.com/assets/img/custom_images/yellow_img.png" alt="Buy me a coffee" /> </a>
+</p>
