@@ -5,11 +5,21 @@
   import { onMount } from "svelte";
   import BrightnessControlOverlay from "./BrightnessControlOverlay.svelte";
   import { hideSystemBars } from "../../js/helpers/systemBars";
+  import type { ChangeEventHandler } from "svelte/elements";
 
   let {
     foliateView: view,
     fraction = $bindable(0),
-  }: { foliateView: FoliateView; fraction: number } = $props();
+    onFractionChange,
+  }: {
+    foliateView: FoliateView;
+    fraction: number;
+    onFractionChange: ChangeEventHandler<HTMLInputElement>;
+  } = $props();
+
+  $effect(() => {
+    console.log(fraction);
+  });
 
   function turnPage(n: number) {
     if (!view) return;
@@ -76,7 +86,21 @@
       class="seekbar"
       style:--visibility={showSeekbar ? "visible" : "hidden"}
     >
-      <Range min={0} max={1} step={0.01} bind:value={fraction}></Range>
+      <input
+        aria-label="Seek to fraction"
+        type="range"
+        min={0}
+        max={1}
+        step={0.0000001}
+        bind:value={fraction}
+        oninput={onFractionChange}
+        list="seekbar-ticks"
+      />
+      <datalist id="seekbar-ticks">
+        {#each view.getSectionFractions() as fraction}
+          <option value={fraction.toFixed(2)}></option>
+        {/each}
+      </datalist>
     </div>
 
     <Button back iconMd="material:arrow_back" iconIos="f7:back" tooltip="Back"
@@ -216,6 +240,11 @@
     visibility: var(--visibility);
     &:hover {
       visibility: visible;
+    }
+
+    input {
+      width: 100%;
+      accent-color: var(--f7-md-primary);
     }
   }
 

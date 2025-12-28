@@ -1,10 +1,10 @@
 <script>
-  import { Link, Navbar, NavRight, Searchbar } from "framework7-svelte";
+    import { Link, Navbar, NavRight, Searchbar } from "framework7-svelte";
 </script>
 
 <Navbar title="Anthology">
-  <div class="navbar-inner">
-    <!-- <NavRight>
+    <div class="navbar-inner">
+        <!-- <NavRight>
       <Link
         searchbarEnable=".searchbar-demo"
         iconIos="f7:search"
@@ -17,5 +17,5 @@
       searchContainer=".search-list"
       searchIn=".item-title"
     /> -->
-  </div>
+    </div>
 </Navbar>

@@ -16,6 +16,7 @@
   import Overlay from "./Overlay.svelte";
   import getBookDoc from "../../js/helpers/getBookDoc";
   import { hideSystemBars, showSystemBars } from "../../js/helpers/systemBars";
+  import type { ChangeEventHandler } from "svelte/elements";
 
   const getCSS = (settings: ReaderSettings) => `
     @namespace epub "http://www.idpf.org/2007/ops";
@@ -39,7 +40,7 @@
     }`
         : ""
     }
-      
+
     p, li, blockquote, dd {
         line-height: ${settings.spacing / 10} !important;
         text-align: ${settings.justify ? "justify" : "start"} !important;
@@ -76,10 +77,11 @@
   let currentPageLabel = $state("");
   let currentProgress = $state(0);
 
-  $effect(() => {
-    if (currentProgress === null || !view) return;
-    view.goToFraction(currentProgress);
-  });
+  // $effect(() => {
+  //   if (currentProgress === null || !view) return;
+  //   console.log(currentProgress);
+  //   view.goToFraction(currentProgress);
+  // });
 
   onMount(async () => {
     // @ts-ignore
@@ -127,9 +129,7 @@
         };
       }) => {
         const { tocItem, pageItem, fraction } = e.detail;
-
         store.currentBookState.lastLocation = e.detail.cfi || "";
-
         currentTOCItem = tocItem;
         currentPageLabel = pageItem?.label || ""; // From EPUB page-list
         currentProgress = fraction || 0;
@@ -152,6 +152,18 @@
     }
   });
 
+  const handleProgressChange: ChangeEventHandler<HTMLInputElement> = (e) => {
+    console.log("fraction", e.currentTarget.value);
+    try {
+      const fraction = Number(e.currentTarget.value);
+      console.log("fraction", fraction);
+      currentProgress = fraction;
+      view?.goToFraction(fraction);
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
   function handleKeyDown(e: KeyboardEvent) {
     if (!view) return;
 
@@ -171,7 +183,11 @@
 
 <div class="wrapper">
   {#if view}
-    <Overlay foliateView={view} bind:fraction={currentProgress} />
+    <Overlay
+      foliateView={view}
+      bind:fraction={currentProgress}
+      onFractionChange={handleProgressChange}
+    />
   {/if}
   <foliate-view bind:this={view}> </foliate-view>
 </div>

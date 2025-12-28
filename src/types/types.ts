@@ -110,6 +110,7 @@ export interface FoliateView extends HTMLElement {
   open: (book: string | BookDoc) => Promise<void>;
   close: () => void;
   init: (options: { lastLocation: string }) => void;
+  getSectionFractions: () => number[];
   goTo: (href: number | CFIString) => void;
   goToFraction: (fraction: number) => void;
   prev: (distance?: number) => void;
@@ -175,7 +176,7 @@ export interface FoliateView extends HTMLElement {
     addEventListener: (
       type: string,
       listener: EventListener,
-      option?: AddEventListenerOptions
+      option?: AddEventListenerOptions,
     ) => void;
     removeEventListener: (type: string, listener: EventListener) => void;
   };
