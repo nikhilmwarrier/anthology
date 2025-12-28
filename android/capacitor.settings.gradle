@@ -24,7 +24,7 @@ include ':capawesome-capacitor-file-picker'
 project(':capawesome-capacitor-file-picker').projectDir = new File('../node_modules/.pnpm/@capawesome+capacitor-file-picker@7.2.0_@capacitor+core@7.4.4/node_modules/@capawesome/capacitor-file-picker/android')
 
 include ':nikhilmwarrier-capacitor-directory-picker'
-project(':nikhilmwarrier-capacitor-directory-picker').projectDir = new File('../node_modules/.pnpm/@nikhilmwarrier+capacitor-directory-picker@https+++codeload.github.com+nikhilmwarrier+capacit_jkfjhzhxn6wcly4a75373hfo7i/node_modules/@nikhilmwarrier/capacitor-directory-picker/android')
+project(':nikhilmwarrier-capacitor-directory-picker').projectDir = new File('../node_modules/.pnpm/@nikhilmwarrier+capacitor-directory-picker@https+++codeload.github.com+nikhilmwarrier+c_9624359a85da00fbc9b3fc56a1737b80/node_modules/@nikhilmwarrier/capacitor-directory-picker/android')
 
 include ':squareetlabs-capacitor-navigation-bar'
 project(':squareetlabs-capacitor-navigation-bar').projectDir = new File('../node_modules/.pnpm/@squareetlabs+capacitor-navigation-bar@1.1.2_@capacitor+core@7.4.4/node_modules/@squareetlabs/capacitor-navigation-bar/android')
