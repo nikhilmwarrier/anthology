@@ -173,6 +173,11 @@
         break;
       case "ArrowLeft":
         view.goLeft();
+        break;
+      // Press 'r' to reload the app. Useful for debugging.
+      case "r":
+        window.location.reload();
+        break;
       default:
         break;
     }
