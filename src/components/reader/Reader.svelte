@@ -69,15 +69,9 @@
 
   let view = $state<FoliateView>();
 
-  let currentTOCItem = $state<TOCItem | null>();
-  let currentPageLabel = $state("");
+  // let currentTOCItem = $state<TOCItem | null>();
+  // let currentPageLabel = $state("");
   let currentProgress = $state(0);
-
-  // $effect(() => {
-  //   if (currentProgress === null || !view) return;
-  //   console.log(currentProgress);
-  //   view.goToFraction(currentProgress);
-  // });
 
   onMount(async () => {
     // @ts-ignore

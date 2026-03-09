@@ -17,10 +17,6 @@
     onFractionChange: ChangeEventHandler<HTMLInputElement>;
   } = $props();
 
-  $effect(() => {
-    console.log(fraction);
-  });
-
   function turnPage(n: number) {
     if (!view) return;
     hideSystemBars();

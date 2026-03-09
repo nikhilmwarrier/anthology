@@ -51,7 +51,6 @@ class GlobalStore {
   constructor() {
     $effect.root(() => {
       $effect(() => {
-        console.log("State change.");
         if (!this.isLoaded) return;
         const stateToSave = $state.snapshot(this.data.bookStates);
         const timeoutId = setTimeout(() => {
@@ -65,7 +64,6 @@ class GlobalStore {
     });
   }
 
-  // You can also easily add helper methods here
   resetStore() {
     this.data.bookStates = {};
   }
@@ -86,14 +84,11 @@ class GlobalStore {
     this.data.bookStates[this.data.currentBookPath] = value;
   }
 
-  // 1. Async Load Method
   async load() {
-    console.log("Load function called.");
     try {
       const value = await loadBooksState();
       if (value) {
         // Reassigning updates the proxy, keeping deep reactivity intact
-        console.log("Loaded value from Capacitor.");
         this.data.bookStates = value;
       }
     } catch (e) {

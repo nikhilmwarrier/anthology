@@ -29,14 +29,12 @@
         // If there are sheets, close the newest popup instead of navigating.
         if (store.data.openedSheets.length > 0) {
           f7.sheet.close(store.data.openedSheets.at(-1));
-          console.log("Popups");
           return;
         }
 
         // If there are popups, close the newest popup instead of navigating.
         if (store.data.openedPopups.length > 0) {
           f7.popup.close(store.data.openedPopups.at(-1));
-          console.log("Sheets");
           return;
         }
 

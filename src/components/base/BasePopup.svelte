@@ -13,7 +13,6 @@
   function popupClose(e: CustomEvent) {
     // Remove popup from store
     const idx = store.data.openedPopups.indexOf(popupEventEl);
-    console.log(store.data.openedPopups);
     store.data.openedPopups.splice(idx, 1);
   }
 </script>
