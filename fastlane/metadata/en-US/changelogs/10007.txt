@@ -1,0 +1,5 @@
+- Sort books by last opened on homescreen
+- Improved file handling
+- Regression fix: Book position is saved on exit
+- Fix light/dark mode switching
+- Improved epub compatibility
