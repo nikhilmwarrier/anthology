@@ -37,6 +37,10 @@ type globalState = {
 class GlobalStore {
   // Svelte 5 allows $state directly on class fields
   isLoaded = $state(false);
+  isDarkTheme = $state<boolean>(
+    window.matchMedia("(prefers-color-scheme: dark)").matches,
+  );
+
   data: globalState = $state({
     bookState: defaultBookState,
     currentBookPath: "/book.epub",

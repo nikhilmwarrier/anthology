@@ -16,12 +16,14 @@
 
   const getCSS = (settings: ReaderSettings) => `
     @namespace epub "http://www.idpf.org/2007/ops";
-    html {
-        color-scheme: dark light;
-        background: black;
+    html, body {
+        color-scheme: ${store.isDarkTheme ? "dark" : "light"};
+        background: ${store.isDarkTheme ? "black" : "#f4ecd8"} !important;
+        color: ${store.isDarkTheme ? "white" : "#5b4636"} !important;
         font-size: ${settings.fontSize}px;
         font-family: serif;
     }
+
     /* https://github.com/whatwg/html/issues/5426 */
     @media (prefers-color-scheme: dark) {
         a:link {
@@ -40,6 +42,7 @@
     p, li, blockquote, dd {
         line-height: ${settings.spacing / 10} !important;
         text-align: ${settings.justify ? "justify" : "start"} !important;
+        color: ${store.isDarkTheme ? "white" : "#5b4636"} !important;
         -webkit-hyphens: ${settings.hyphenate ? "auto" : "manual"};
         hyphens: ${settings.hyphenate ? "auto" : "manual"};
         -webkit-hyphenate-limit-before: 3;
@@ -69,8 +72,8 @@
 
   let view = $state<FoliateView>();
 
-  // let currentTOCItem = $state<TOCItem | null>();
-  // let currentPageLabel = $state("");
+  let currentTOCItem = $state<TOCItem | null>();
+  let currentPageLabel = $state("");
   let currentProgress = $state(0);
 
   onMount(async () => {

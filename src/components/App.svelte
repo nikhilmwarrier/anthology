@@ -38,6 +38,9 @@
           return;
         }
 
+        store.isDarkTheme = f7.darkMode;
+        f7.on("darkModeChange", (isDark) => (store.isDarkTheme = isDark));
+
         const router = f7.views.current.router;
 
         if (router.history.length > 1) {
