@@ -2,6 +2,28 @@
 
 import type { FileInfo } from "@nikhilmwarrier/capacitor-directory-picker";
 
+export type ReaderSettings = {
+  invertImages: boolean;
+  justify: boolean;
+  hyphenate: boolean;
+  spacing: number;
+  fontSize: number;
+  autoBrightness: boolean;
+  brightness: number;
+};
+
+export interface Book extends BookDoc {
+  cover: string;
+}
+
+export type BookState = {
+  settings: ReaderSettings;
+  lastOpened: EpochTimeStamp;
+  lastLocation: CFIString;
+};
+
+export type BooksStateObject = { [bookPath: string]: BookState };
+
 export interface BookDirectory {
   uri: string;
 }

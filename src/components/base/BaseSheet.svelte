@@ -7,16 +7,16 @@
 
   function sheetOpen(e: CustomEvent) {
     sheetEventEl = e.detail[0].el;
-    if (sheetEventEl) store.openedSheets.push(sheetEventEl);
-    console.log("Sheet: ", store.openedSheets.length);
+    if (sheetEventEl) store.data.openedSheets.push(sheetEventEl);
+    console.log("Sheet: ", store.data.openedSheets.length);
   }
 
   function sheetClose(e: CustomEvent) {
     // Remove sheet from store
-    const idx = store.openedSheets.indexOf(sheetEventEl);
-    console.log(store.openedSheets);
-    store.openedSheets.splice(idx, 1);
-    console.log("Sheet: ", store.openedSheets.length);
+    const idx = store.data.openedSheets.indexOf(sheetEventEl);
+    console.log(store.data.openedSheets);
+    store.data.openedSheets.splice(idx, 1);
+    console.log("Sheet: ", store.data.openedSheets.length);
   }
 </script>
 

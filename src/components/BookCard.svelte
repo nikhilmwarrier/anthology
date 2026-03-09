@@ -5,10 +5,8 @@
   import { store } from "../js/store.svelte";
   import { Capacitor } from "@capacitor/core";
 
-  const router = f7.views.main.router;
-
   function handleClick() {
-    store.currentBookPath = Capacitor.convertFileSrc(bookFile.uri);
+    store.data.currentBookPath = Capacitor.convertFileSrc(bookFile.uri);
     f7.view.current.router.navigate(`/reader`);
   }
 </script>

@@ -1,5 +1,5 @@
 import { Preferences } from "@capacitor/preferences";
-import type { BooksStateObject, BookState } from "../store.svelte";
+import type { BooksStateObject } from "../../types/types";
 
 const key = "booksState";
 

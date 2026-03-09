@@ -1,18 +1,18 @@
 import { DirectoryPicker } from "@nikhilmwarrier/capacitor-directory-picker";
 import { SUPPORTED_FILETYPES } from "../constants";
-import getCover from "./getCover";
 import { store } from "../store.svelte";
 import { getBooksDirectory } from "./booksDirectory";
+import getCover from "./getCover";
 
 const getLastOpened = (filepath: string) =>
-  store.bookStates[filepath]?.lastOpened || Date.now();
+  store.data.bookStates[filepath]?.lastOpened || Date.now();
 
 /**
  * Read books from bookdir and save them to `store.bookFiles[]`
  */
 export default async function fetchBookFiles() {
   // Reset store
-  store.bookFiles = [];
+  store.data.bookFiles = [];
 
   const dir = await getBooksDirectory();
   const files = (await DirectoryPicker.readFilesFromDirectory(dir)).files;
@@ -23,7 +23,7 @@ export default async function fetchBookFiles() {
       const coverSrc = await getCover(file);
       const lastOpened = getLastOpened(file.uri);
 
-      store.bookFiles.unshift({
+      store.data.bookFiles.unshift({
         ...file,
         coverSrc,
         lastOpened,

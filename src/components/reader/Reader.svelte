@@ -1,15 +1,11 @@
 <script lang="ts">
   import { onDestroy, onMount } from "svelte";
-  import {
-    defaultBookState,
-    store,
-    type BookState,
-    type ReaderSettings,
-  } from "../../js/store.svelte";
+  import { defaultBookState, store } from "../../js/store.svelte";
   import type {
     CFIString,
     FoliateView,
     PageItem,
+    ReaderSettings,
     TOCItem,
   } from "../../types/types";
   import { StatusBar } from "@capacitor/status-bar";
@@ -87,7 +83,7 @@
     // @ts-ignore
     await import("foliate-js/view.js");
     try {
-      await loadBook(store.currentBookPath);
+      await loadBook(store.data.currentBookPath);
       hideSystemBars();
     } catch (e) {
       alert(e);
@@ -106,13 +102,17 @@
     try {
       await view.open(bookPath);
 
-      store.currentBookDoc = await getBookDoc(bookPath);
+      store.data.currentBookDoc = await getBookDoc(bookPath);
+
+      // Initialise book if empty
+      if (!store.data.bookStates[store.data.currentBookPath])
+        store.data.bookStates[store.data.currentBookPath] = defaultBookState;
 
       // view.renderer.setAttribute("margin", "0px"); // Remove unnecessary margins
       view.renderer.setAttribute("gap", "2ch");
       view.renderer.setStyles?.(styles);
 
-      view.init({ lastLocation: store.currentBookState.lastLocation });
+      view.init({ lastLocation: store.currentBookState?.lastLocation || "" });
     } catch (e) {
       console.error("Failed to load book:", e);
     }

@@ -35,13 +35,13 @@
   </Navbar>
 
   <Page>
-    {#if store.currentBookDoc && store.currentBookDoc.toc && store.currentBookDoc.toc?.length > 0}
+    {#if store.data.currentBookDoc && store.data.currentBookDoc.toc && store.data.currentBookDoc.toc?.length > 0}
       <div class="space" style="padding: 1rem;"></div>
       <Treeview>
         <TOCTree
           offset={1}
           onNavigate={handleNavigate}
-          tocItems={store.currentBookDoc.toc || []}
+          tocItems={store.data.currentBookDoc.toc || []}
         />
       </Treeview>
     {:else}

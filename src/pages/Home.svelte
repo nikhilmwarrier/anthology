@@ -59,8 +59,8 @@
       <BlockTitle>Library</BlockTitle>
 
       <Block>
-        <div class="grid grid-cols-2 grid-gap">
-          {#each store.bookFiles as bookFile}
+        <div class="grid-gap grid grid-cols-2">
+          {#each store.data.bookFiles as bookFile}
             <BookCard {bookFile} />
           {/each}
         </div>
