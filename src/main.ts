@@ -10,8 +10,13 @@ import Framework7Svelte from "framework7-svelte";
 Framework7.use(Framework7Svelte);
 
 // Import Main App component
-import App from "./components/App.svelte";
 import { mount } from "svelte";
+import App from "./components/App.svelte";
+
+// Eruda devtools for mobile debugging, since adb get choked by chrome://inspect
+if (import.meta.env.DEV) {
+  import("eruda").then((eruda) => eruda.default.init());
+}
 
 // Mount Svelte App
 const app = mount(App, {
