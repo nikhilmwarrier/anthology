@@ -113,10 +113,18 @@ class GlobalStore {
     } catch (e) {
       console.error("Failed to load state from Capacitor", e);
     } finally {
+      // Initialize the current book's state so Svelte binds to a reactive proxy,
+      if (!this.data.bookStates[this.currentBookFilename]) {
+        this.data.bookStates[this.currentBookFilename] = {
+          settings: JSON.parse(JSON.stringify(defaultReaderSettings)),
+          lastOpened: Date.now(),
+          lastLocation: "",
+        };
+      }
+
       this.isLoaded = true;
     }
   }
 }
 
-// Export a single instance to act as a singleton global store
 export const store = new GlobalStore();

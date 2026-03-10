@@ -8,16 +8,16 @@ export async function loadBooksState(): Promise<BooksStateObject> {
     key,
   });
 
-  return JSON.parse(fetched.value ?? "[]");
+  return JSON.parse(fetched.value ?? "{}");
 }
 
 export async function saveBooksState(state: BooksStateObject) {
-  Preferences.set({
+  await Preferences.set({
     key,
     value: JSON.stringify(state),
   });
 }
 
 export async function clearBooksState() {
-  Preferences.remove({ key });
+  await Preferences.remove({ key });
 }
