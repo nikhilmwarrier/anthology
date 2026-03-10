@@ -55,15 +55,25 @@ class GlobalStore {
   constructor() {
     $effect.root(() => {
       $effect(() => {
+        // force svelte to read every nested setting, making it deeply reactive
+        // snapshot won't work here because svelte
+        const stringifiedState = JSON.stringify(this.data.bookStates);
+
+        // make sure this comes *after* the stringification. I spent an insane amount of time wondering why my $effect wasn't reactive. Turns out it was because of this.
         if (!this.isLoaded) return;
-        const stateToSave = $state.snapshot(this.data.bookStates);
-        const timeoutId = setTimeout(() => {
+
+        // debounce
+        const handler = setTimeout(() => {
+          console.log("Saving books state!");
+
+          const stateToSave = JSON.parse(stringifiedState);
+
           saveBooksState(stateToSave).catch((err) =>
             console.error("Capacitor save error", err),
           );
-        }, 500);
+        }, 1000);
 
-        return () => clearTimeout(timeoutId);
+        return () => clearTimeout(handler);
       });
     });
   }
@@ -73,6 +83,11 @@ class GlobalStore {
   }
 
   // Aliases
+
+  currentBookFilename = $derived(
+    decodeURIComponent(this.data.currentBookPath).split("/").at(-1) || "",
+  );
+
   get settings() {
     if (this.currentBookState) {
       return this.currentBookState.settings;
@@ -81,11 +96,11 @@ class GlobalStore {
   }
 
   get currentBookState() {
-    return this.data.bookStates[this.data.currentBookPath];
+    return this.data.bookStates[this.currentBookFilename];
   }
 
   set currentBookState(value) {
-    this.data.bookStates[this.data.currentBookPath] = value;
+    this.data.bookStates[this.currentBookFilename] = value;
   }
 
   async load() {
