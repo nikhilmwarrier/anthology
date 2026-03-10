@@ -102,8 +102,11 @@
       store.data.currentBookDoc = await getBookDoc(bookPath);
 
       // Initialise book if empty
-      if (!store.data.bookStates[store.data.currentBookPath])
-        store.data.bookStates[store.data.currentBookPath] = defaultBookState;
+      if (!store.data.bookStates[store.currentBookFilename])
+        store.data.bookStates[store.currentBookFilename] = defaultBookState;
+
+      store.currentBookState.lastOpened = Date.now();
+      console.log("Last opened: ", store.currentBookState.lastOpened);
 
       // view.renderer.setAttribute("margin", "0px"); // Remove unnecessary margins
       view.renderer.setAttribute("gap", "2ch");

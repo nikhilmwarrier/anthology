@@ -24,6 +24,10 @@
     await fetchBookFiles();
   });
 
+  const sortedBookFiles = $derived(
+    store.data.bookFiles.toSorted((a, b) => b.lastOpened - a.lastOpened),
+  );
+
   async function handleChangeBooksDirectory(e: Event) {
     e.preventDefault();
     await resetBooksDirectory();
@@ -60,7 +64,7 @@
 
       <Block>
         <div class="grid-gap grid grid-cols-2">
-          {#each store.data.bookFiles as bookFile}
+          {#each sortedBookFiles as bookFile}
             <BookCard {bookFile} />
           {/each}
         </div>

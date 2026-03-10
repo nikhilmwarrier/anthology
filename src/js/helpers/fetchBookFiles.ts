@@ -4,8 +4,8 @@ import { store } from "../store.svelte";
 import { getBooksDirectory } from "./booksDirectory";
 import getCover from "./getCover";
 
-const getLastOpened = (filepath: string) =>
-  store.data.bookStates[filepath]?.lastOpened || Date.now();
+const getLastOpened = (filename: string) =>
+  store.data.bookStates[filename]?.lastOpened || 0;
 
 /**
  * Read books from bookdir and save them to `store.bookFiles[]`
@@ -21,7 +21,7 @@ export default async function fetchBookFiles() {
     if (!SUPPORTED_FILETYPES.includes(file.type)) continue;
     try {
       const coverSrc = await getCover(file);
-      const lastOpened = getLastOpened(file.uri);
+      const lastOpened = getLastOpened(file.name);
 
       store.data.bookFiles.unshift({
         ...file,

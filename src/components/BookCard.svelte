@@ -49,8 +49,8 @@
     border: 1px solid black;
   }
 
-  p {
+  /*p {
     font-size: 1rem;
     margin: 0;
-  }
+  }*/
 </style>
