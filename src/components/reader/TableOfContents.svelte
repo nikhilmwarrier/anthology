@@ -27,7 +27,13 @@
   onDestroy(async () => await hideSystemBars());
 </script>
 
-<BasePopup bind:this={popup} swipeToClose class="table-of-contents">
+<BasePopup
+  onPopupOpen={() => showSystemBars()}
+  onPopupClose={() => hideSystemBars()}
+  bind:this={popup}
+  swipeToClose
+  class="table-of-contents"
+>
   <Navbar title="Table of Contents">
     <NavRight>
       <Link popupClose iconMd="material:close" />
