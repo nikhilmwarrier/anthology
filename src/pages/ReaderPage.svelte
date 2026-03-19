@@ -3,8 +3,6 @@
   import Reader from "../components/reader/Reader.svelte";
 </script>
 
-<Page name="reader" bgColor="black">
-  <PageContent>
-    <Reader />
-  </PageContent>
+<Page name="reader" bgColor="black" id="reader-page">
+  <Reader />
 </Page>
