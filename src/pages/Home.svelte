@@ -33,35 +33,48 @@
   );
 
   type FileEvent = Event & { currentTarget: EventTarget & HTMLInputElement };
+
   async function loadBookFile(e: FileEvent) {
     const input = e.target as HTMLInputElement;
-    if (input.files) {
-      const uploadedFile = input.files[0];
+    if (input.files && input.files.length > 0) {
+      for (const uploadedFile of input.files) {
+        console.log(uploadedFile);
+        const bookDocURI = URL.createObjectURL(uploadedFile);
 
-      console.log(uploadedFile);
-      const bookDocURI = URL.createObjectURL(uploadedFile);
+        // Prepare for loadBookFromFile()
+        const file: FileInfo = {
+          lastModified: Date.now(),
+          uri: bookDocURI,
+          name: uploadedFile.name,
+          size: uploadedFile.size,
+          type: uploadedFile.type,
+        };
 
-      // Prepare for loadBookFromFile()
-      const file: FileInfo = {
-        lastModified: Date.now(),
-        uri: bookDocURI,
-        name: uploadedFile.name,
-        size: uploadedFile.size,
-        type: uploadedFile.type,
-      };
-
-      await loadBookFromFile(file);
-
-      store.data.currentBookFilename = file.uri;
+        try {
+          await loadBookFromFile(file);
+        } catch (error) {
+          console.log("Error loading file: ", error);
+        } finally {
+          continue;
+        }
+      }
     }
-
-    f7.view.current.router.navigate(`/reader`);
   }
 
   async function handleChangeBooksDirectory(e: Event) {
     e.preventDefault();
     await resetBooksDirectory();
     await fetchBookFiles();
+  }
+
+  async function handleAddBooks() {
+    switch (PLATFORM) {
+      case "android":
+        return importEbooks();
+      case "web":
+        document.querySelector<HTMLInputElement>("#file-input")!.click();
+        break;
+    }
   }
 </script>
 
@@ -84,7 +97,7 @@
     />
   </Toolbar>
 
-  <Fab position="right-bottom" on:click={importEbooks} title="Add ebooks">
+  <Fab position="right-bottom" on:click={handleAddBooks} title="Add ebooks">
     <Icon ios="f7:add" md="material:add" />
   </Fab>
 
@@ -93,21 +106,15 @@
       <BlockTitle>Library</BlockTitle>
 
       <Block>
-        {#if PLATFORM === "web"}
-          <Link href="/reader">Open default book</Link>
-          <br />
-          <input
-            type="file"
-            id="file-input"
-            onchange={(e) => loadBookFile(e)}
-          />
+        {#if sortedBookFiles.length === 0}
+          <p>Add some books to get started.</p>
+        {:else}
+          <div class="grid-gap grid grid-cols-2">
+            {#each sortedBookFiles as bookFile}
+              <BookCard {bookFile} />
+            {/each}
+          </div>
         {/if}
-
-        <div class="grid-gap grid grid-cols-2">
-          {#each sortedBookFiles as bookFile}
-            <BookCard {bookFile} />
-          {/each}
-        </div>
       </Block>
     </swiper-slide>
     <swiper-slide id="tab-2" class="tab page-content">
@@ -161,6 +168,17 @@
     </swiper-slide>
   </Tabs>
 </Page>
+
+<!-- Hidden file input for web -->
+{#if PLATFORM === "web"}
+  <input
+    type="file"
+    id="file-input"
+    style="display: none;"
+    multiple
+    onchange={(e) => loadBookFile(e)}
+  />
+{/if}
 
 <style>
   .page-content {

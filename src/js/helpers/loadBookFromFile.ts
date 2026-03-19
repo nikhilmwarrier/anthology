@@ -18,7 +18,9 @@ export default async function loadBookFromFile(file: FileInfo) {
   const bookCover = await getCover(bookDoc);
   const lastOpened = getLastOpened(file.name);
 
-  if (file.name in store.data.bookStates) {
+  console.log(file.name, store.bookFileNames);
+
+  if (store.bookFileNames.includes(file.name)) {
     throw new Error("Book already exists in store.");
   }
 
