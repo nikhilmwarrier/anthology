@@ -94,6 +94,7 @@
   });
 
   onDestroy(async () => {
+    setScreenBrightness(-1);
     await showSystemBars();
   });
 
