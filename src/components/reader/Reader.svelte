@@ -76,6 +76,8 @@
 
     p, li, blockquote, dd {
         margin: auto 0 !important;
+        text-indent: 0 !important;
+        padding-top: ${settings.spacing / 20}rem;
         line-height: ${settings.spacing / 10} !important;
         text-align: ${settings.justify ? "justify" : "start"} !important;
         color: ${store.isDarkTheme ? "white" : "#5b4636"} !important;
