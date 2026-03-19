@@ -22,9 +22,6 @@
     f7.popup.close(".table-of-contents");
     onNavigate(e);
   }
-
-  onMount(async () => await showSystemBars());
-  onDestroy(async () => await hideSystemBars());
 </script>
 
 <BasePopup
