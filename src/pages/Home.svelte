@@ -118,18 +118,20 @@
       </Block>
     </swiper-slide>
     <swiper-slide id="tab-2" class="tab page-content">
-      <BlockTitle>Settings</BlockTitle>
-      <List strong inset>
-        <ListItem
-          link="#"
-          title="Change books directory"
-          on:click={handleChangeBooksDirectory}
-        />
-      </List>
+      {#if PLATFORM !== "web"}
+        <BlockTitle>Settings</BlockTitle>
+        <List strong inset>
+          <ListItem
+            link="#"
+            title="Change books directory"
+            on:click={handleChangeBooksDirectory}
+          />
+        </List>
+      {/if}
 
       <BlockTitle>Download Books</BlockTitle>
       <List strong inset>
-        <a href="https://standardebooks.org/" class="external">
+        <a href="https://standardebooks.org/" target="_blank" class="external">
           <ListItem title="Standard Ebooks">
             <Icon
               md="material:open_in_new"
@@ -139,7 +141,7 @@
             />
           </ListItem>
         </a>
-        <a href="https://www.gutenberg.org/" class="external">
+        <a href="https://www.gutenberg.org/" target="_blank" class="external">
           <ListItem title="Project Gutenberg">
             <Icon
               md="material:open_in_new"
