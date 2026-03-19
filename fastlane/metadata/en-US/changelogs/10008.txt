@@ -1,0 +1,5 @@
+- Style fixes. A lot more books should render correctly now.
+- Fancy new serif font: Cartisse
+- Plays nicer with dictionary apps like Aard2.
+- Under-the-hood changes that could potentially let this be a standalone web app.
+- And a lot of little bugfixes
