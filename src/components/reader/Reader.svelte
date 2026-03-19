@@ -80,9 +80,11 @@
     // @ts-ignore
     await import("foliate-js/view.js");
     try {
-      const bookFile = store.data.bookFiles.find((file) => file.name);
-      const url = bookFile ? Capacitor.convertFileSrc(bookFile?.uri) : "";
-      console.log("URL", store.data.bookFiles);
+      const bookFile = store.data.bookFiles.find(
+        (file) => file.name === store.currentBookFilename,
+      );
+      const url = bookFile ? getURLfromURI(bookFile?.uri) : "";
+      console.log("file, URL", bookFile?.name, url);
       await loadBook(url);
       hideSystemBars();
     } catch (e) {
