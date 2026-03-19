@@ -13,15 +13,50 @@
   import { hideSystemBars, showSystemBars } from "../../js/helpers/systemBars";
   import type { ChangeEventHandler } from "svelte/elements";
   import { Capacitor } from "@capacitor/core";
+  import getURLfromURI from "../../js/helpers/getURLfromURI";
+  import { filterCSS, filterHTML } from "../../js/helpers/filterStyles";
+  import setScreenBrightness from "../../js/helpers/setScreenBrightness";
 
   const getCSS = (settings: ReaderSettings) => `
     @namespace epub "http://www.idpf.org/2007/ops";
+
+
+    @font-face {
+        font-family: 'Cartisse';
+        src: url('${window.location.origin}/Cartisse_v2.01/Cartisse-Regular.ttf') format('truetype');;
+        font-weight: normal;
+        font-style: normal;
+    }
+
+    @font-face {
+      font-family: "Cartisse";
+      src: url('${window.location.origin}/Cartisse_v2.01/Cartisse-Italic.ttf') format('truetype');
+      font-weight: normal;
+      font-style: italic;
+    }
+
+    /* Bold */
+    @font-face {
+      font-family: "Cartisse";
+      src: url('${window.location.origin}/Cartisse_v2.01/Cartisse-Bold.ttf') format('truetype');;
+      font-weight: bold;
+      font-style: normal;
+    }
+
+    /* Bold Italic */
+    @font-face {
+      font-family: "Cartisse";
+      src: url('${window.location.origin}/Cartisse_v2.01/Cartisse-BoldItalic.ttf') format('truetype');;
+      font-weight: bold;
+      font-style: italic;
+    }
+
     html, body {
         color-scheme: ${store.isDarkTheme ? "dark" : "light"};
         background: ${store.isDarkTheme ? "black" : "#f4ecd8"} !important;
         color: ${store.isDarkTheme ? "white" : "#5b4636"} !important;
         font-size: ${settings.fontSize}px;
-        font-family: serif;
+        font-family: "Cartisse", serif;
     }
 
     /* https://github.com/whatwg/html/issues/5426 */
@@ -40,6 +75,7 @@
     }
 
     p, li, blockquote, dd {
+        margin: auto 0 !important;
         line-height: ${settings.spacing / 10} !important;
         text-align: ${settings.justify ? "justify" : "start"} !important;
         color: ${store.isDarkTheme ? "white" : "#5b4636"} !important;
@@ -94,6 +130,7 @@
   });
 
   onDestroy(async () => {
+    view?.close();
     setScreenBrightness(-1);
     await showSystemBars();
   });
@@ -102,16 +139,34 @@
     if (!view) return;
 
     try {
-      await view.open(bookPath);
+      console.log("Loading", bookPath);
+
+      try {
+        await view.open(bookPath);
+      } catch (error) {
+        console.error("Error loading book", bookPath, error);
+      } finally {
+        console.log("Loaded book", bookPath);
+      }
 
       store.data.currentBookDoc = await getBookDoc(bookPath);
 
-      // Initialise book if empty
-      if (!store.data.bookStates[store.currentBookFilename])
-        store.data.bookStates[store.currentBookFilename] = defaultBookState;
+      store.initializeCurrentBook();
 
       store.currentBookState.lastOpened = Date.now();
       console.log("Last opened: ", store.currentBookState.lastOpened);
+
+      view.book?.transformTarget?.addEventListener("data", (e: any) => {
+        const detail = e.detail;
+        const { data, type, name } = detail;
+
+        // We only care about CSS files or HTML with inline styles
+        if (type === "text/css") {
+          detail.data = filterCSS(data);
+        } else if (type === "application/xhtml+xml" || type === "text/html") {
+          detail.data = filterHTML(data);
+        }
+      });
 
       // view.renderer.setAttribute("margin", "0px"); // Remove unnecessary margins
       view.renderer.setAttribute("gap", "2ch");
