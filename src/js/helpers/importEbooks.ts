@@ -1,7 +1,7 @@
 import { FilePicker } from "@capawesome/capacitor-file-picker";
+import { DirectoryPicker } from "@nikhilmwarrier/capacitor-directory-picker";
 import { SUPPORTED_FILETYPES } from "../constants";
 import { getBooksDirectory } from "./booksDirectory";
-import { DirectoryPicker } from "@nikhilmwarrier/capacitor-directory-picker";
 import fetchBookFiles from "./fetchBookFiles";
 
 async function pickEbookFiles() {

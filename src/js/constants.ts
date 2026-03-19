@@ -1,3 +1,5 @@
+import { Capacitor } from "@capacitor/core";
+
 export const SUPPORTED_FILETYPES = [
   // .epub
   "application/epub+zip",
@@ -8,3 +10,5 @@ export const SUPPORTED_FILETYPES = [
   // .azw3
   "application/vnd.amazon.mobi8-ebook",
 ];
+
+export const PLATFORM = Capacitor.getPlatform() as "ios" | "android" | "web";

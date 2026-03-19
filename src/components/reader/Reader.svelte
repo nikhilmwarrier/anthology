@@ -8,11 +8,11 @@
     ReaderSettings,
     TOCItem,
   } from "../../types/types";
-  import { StatusBar } from "@capacitor/status-bar";
   import Overlay from "./Overlay.svelte";
   import getBookDoc from "../../js/helpers/getBookDoc";
   import { hideSystemBars, showSystemBars } from "../../js/helpers/systemBars";
   import type { ChangeEventHandler } from "svelte/elements";
+  import { Capacitor } from "@capacitor/core";
 
   const getCSS = (settings: ReaderSettings) => `
     @namespace epub "http://www.idpf.org/2007/ops";
@@ -80,7 +80,10 @@
     // @ts-ignore
     await import("foliate-js/view.js");
     try {
-      await loadBook(store.data.currentBookPath);
+      const bookFile = store.data.bookFiles.find((file) => file.name);
+      const url = bookFile ? Capacitor.convertFileSrc(bookFile?.uri) : "";
+      console.log("URL", store.data.bookFiles);
+      await loadBook(url);
       hideSystemBars();
     } catch (e) {
       alert(e);
@@ -89,8 +92,7 @@
   });
 
   onDestroy(async () => {
-    await StatusBar.show();
-    showSystemBars();
+    await showSystemBars();
   });
 
   async function loadBook(bookPath: string) {

@@ -1,5 +1,4 @@
 <script lang="ts">
-  import { StatusBar } from "@capacitor/status-bar";
   import {
     f7,
     Link,
@@ -13,6 +12,7 @@
   import TOCTree from "./TOCTree.svelte";
   import type { TOCNavigateEvent } from "../../types/types";
   import BasePopup from "../base/BasePopup.svelte";
+  import { hideSystemBars, showSystemBars } from "../../js/helpers/systemBars";
 
   let { onNavigate }: { onNavigate: (e: TOCNavigateEvent) => void } = $props();
 
@@ -23,8 +23,8 @@
     onNavigate(e);
   }
 
-  onMount(async () => await StatusBar.show());
-  onDestroy(async () => await StatusBar.hide());
+  onMount(async () => await showSystemBars());
+  onDestroy(async () => await hideSystemBars());
 </script>
 
 <BasePopup bind:this={popup} swipeToClose class="table-of-contents">

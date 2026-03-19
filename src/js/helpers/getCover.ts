@@ -1,6 +1,4 @@
-import type { FileInfo } from "@nikhilmwarrier/capacitor-directory-picker";
-import getBookDoc from "./getBookDoc";
-import { Capacitor } from "@capacitor/core";
+import type { BookDoc } from "../../types/types";
 
 // TODO: Implement fallback cover.
 
@@ -9,10 +7,8 @@ import { Capacitor } from "@capacitor/core";
  * @param bookFile Book file
  * @returns `blob://` url for the book cover if it exists, else returns fallback cover.
  */
-export default async function getCover(bookFile: FileInfo) {
-  const url = Capacitor.convertFileSrc(bookFile.uri);
-  const book = await getBookDoc(url);
-  const coverBlob = await book.getCover();
+export default async function getCover(bookDoc: BookDoc) {
+  const coverBlob = await bookDoc.getCover();
 
   if (coverBlob) {
     const coverUrl = URL.createObjectURL(coverBlob);

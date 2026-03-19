@@ -25,7 +25,7 @@ export const defaultBookState: BookState = {
 
 type globalState = {
   bookState: BookState;
-  currentBookPath: string;
+  currentBookFilename: string;
   bookStates: BooksStateObject;
   bookFiles: BookFile[];
   currentBookDoc: BookDoc | null;
@@ -43,7 +43,7 @@ class GlobalStore {
 
   data: globalState = $state({
     bookState: defaultBookState,
-    currentBookPath: "/book.epub",
+    currentBookFilename: "book.epub",
     bookStates: {} as BooksStateObject,
     bookFiles: [] as BookFile[],
     currentBookDoc: null,
@@ -84,9 +84,7 @@ class GlobalStore {
 
   // Aliases
 
-  currentBookFilename = $derived(
-    decodeURIComponent(this.data.currentBookPath).split("/").at(-1) || "",
-  );
+  currentBookFilename = $derived(this.data.currentBookFilename);
 
   get settings() {
     if (this.currentBookState) {

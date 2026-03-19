@@ -1,11 +1,20 @@
-<script>
+<script lang="ts">
   import { ScreenBrightness } from "@capacitor-community/screen-brightness";
   import { store } from "../../js/store.svelte";
+  import { PLATFORM } from "../../js/constants";
+
+  async function setScreenBrightness(value: number) {
+    if (PLATFORM === "web") return;
+
+    ScreenBrightness.setBrightness({
+      brightness: value,
+    }).catch(console.error);
+  }
 
   let darkening = $derived.by(() =>
     store.settings.brightness !== null && store.settings.autoBrightness
       ? 0
-      : -store.settings.brightness / 100
+      : -store.settings.brightness / 100,
   );
 
   $effect(() => {
@@ -13,17 +22,10 @@
     if (store.settings.brightness === null) return;
 
     if (store.settings.autoBrightness) {
-      ScreenBrightness.setBrightness({
-        brightness: -1,
-      }).catch(console.error);
     } else if (store.settings.brightness >= 0) {
-      ScreenBrightness.setBrightness({
-        brightness: store.settings.brightness / 100,
-      }).catch(console.error);
+      setScreenBrightness(store.settings.brightness / 100);
     } else {
-      ScreenBrightness.setBrightness({
-        brightness: 0,
-      }).catch(console.error);
+      setScreenBrightness(0);
     }
   });
 </script>

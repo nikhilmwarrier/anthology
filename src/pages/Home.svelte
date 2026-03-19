@@ -10,6 +10,7 @@
     Tabs,
     Fab,
     Icon,
+    f7,
   } from "framework7-svelte";
   import BookCard from "../components/BookCard.svelte";
   import Nav from "../components/Nav.svelte";
@@ -19,6 +20,9 @@
   import { store } from "../js/store.svelte";
   import importEbooks from "../js/helpers/importEbooks";
   import { resetBooksDirectory } from "../js/helpers/booksDirectory";
+  import { PLATFORM } from "../js/constants";
+  import type { FileInfo } from "@nikhilmwarrier/capacitor-directory-picker";
+  import loadBookFromFile from "../js/helpers/loadBookFromFile";
 
   onMount(async () => {
     await fetchBookFiles();
@@ -27,6 +31,32 @@
   const sortedBookFiles = $derived(
     store.data.bookFiles.toSorted((a, b) => b.lastOpened - a.lastOpened),
   );
+
+  type FileEvent = Event & { currentTarget: EventTarget & HTMLInputElement };
+  async function loadBookFile(e: FileEvent) {
+    const input = e.target as HTMLInputElement;
+    if (input.files) {
+      const uploadedFile = input.files[0];
+
+      console.log(uploadedFile);
+      const bookDocURI = URL.createObjectURL(uploadedFile);
+
+      // Prepare for loadBookFromFile()
+      const file: FileInfo = {
+        lastModified: Date.now(),
+        uri: bookDocURI,
+        name: uploadedFile.name,
+        size: uploadedFile.size,
+        type: uploadedFile.type,
+      };
+
+      await loadBookFromFile(file);
+
+      store.data.currentBookFilename = file.uri;
+    }
+
+    f7.view.current.router.navigate(`/reader`);
+  }
 
   async function handleChangeBooksDirectory(e: Event) {
     e.preventDefault();
@@ -63,6 +93,16 @@
       <BlockTitle>Library</BlockTitle>
 
       <Block>
+        {#if PLATFORM === "web"}
+          <Link href="/reader">Open default book</Link>
+          <br />
+          <input
+            type="file"
+            id="file-input"
+            onchange={(e) => loadBookFile(e)}
+          />
+        {/if}
+
         <div class="grid-gap grid grid-cols-2">
           {#each sortedBookFiles as bookFile}
             <BookCard {bookFile} />
@@ -125,10 +165,5 @@
 <style>
   .page-content {
     padding: 0;
-  }
-
-  .version {
-    text-align: right;
-    opacity: 0.3;
   }
 </style>

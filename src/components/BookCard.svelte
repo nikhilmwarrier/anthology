@@ -6,7 +6,7 @@
   import { Capacitor } from "@capacitor/core";
 
   function handleClick() {
-    store.data.currentBookPath = Capacitor.convertFileSrc(bookFile.uri);
+    store.data.currentBookFilename = bookFile.name;
     f7.view.current.router.navigate(`/reader`);
   }
 </script>
